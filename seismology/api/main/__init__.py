@@ -4,15 +4,13 @@ from dotenv import load_dotenv
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 
-
-
 api = Api()
 db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
     load_dotenv()
-    if not os.path.exist(os.getenv('SQLALCHEMY_DATABASE_PATH')+os.getenv('SQLALCHEMY_DATABASE_NAME')):
+    if not os.path.exists(os.getenv('SQLALCHEMY_DATABASE_PATH')+os.getenv('SQLALCHEMY_DATABASE_NAME')):
         os.mknod(os.getenv('SQLALCHEMY_DATABASE_PATH')+os.getenv('SQLALCHEMY_DATABASE_NAME'))
 
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -25,5 +23,7 @@ def create_app():
     api.add_resource(resources.VerifiedseismResource, '/verified-seism/<id>')
     api.add_resource(resources.UnverifiedseismsResource, '/unverified-seisms')
     api.add_resource(resources.UnverifiedseismResource, '/unverified-seism/<id>')
+    api.add_resource(resources.UsersResource, '/users')
+    api.add_resource(resources.UserResource, '/user/<id>')
     api.init_app(app)
     return app
