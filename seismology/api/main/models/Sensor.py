@@ -13,11 +13,11 @@ class Sensor(db.Model):
     def to_json(self):
         sensor_json = {
             'id': self.id,
-            'name': self.name,
-            'ip': self.ip,
+            'name': str(self.name),
+            'ip': str(self.ip),
             'port': self.port,
             'status': self.status,
-            'active': self.active
+            'active': self.active,
         }
         return sensor_json
     def from_json(sensor_json):

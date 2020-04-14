@@ -30,7 +30,7 @@ class Sensors(Resource):
     #obtener lista de recursos
     def get(self):
         sensors = db.session.query(SensorModel).all()
-        return jsonify({'Sensors': [sensors.to_json() for sensor in sensors]})
+        return jsonify({'Sensors': [sensor.to_json() for sensor in sensors]})
 
     #insertar recurso
     def post(self):

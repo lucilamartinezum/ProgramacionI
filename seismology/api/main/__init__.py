@@ -19,10 +19,13 @@ def create_app():
     import main.resources as resources
     api.add_resource(resources.SensorsResource, '/sensors')
     api.add_resource(resources.SensorResource, '/sensor/<id>')
+
     api.add_resource(resources.VerifiedseismsResource, '/verified-seisms')
     api.add_resource(resources.VerifiedseismResource, '/verified-seism/<id>')
+
     api.add_resource(resources.UnverifiedseismsResource, '/unverified-seisms')
     api.add_resource(resources.UnverifiedseismResource, '/unverified-seism/<id>')
+
     api.add_resource(resources.UsersResource, '/users')
     api.add_resource(resources.UserResource, '/user/<id>')
     api.init_app(app)
