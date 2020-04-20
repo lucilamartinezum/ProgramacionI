@@ -1,4 +1,5 @@
 from .. import db
+from main.models.User import User
 
 class Sensor(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -7,12 +8,13 @@ class Sensor(db.Model):
     port = db.Column(db.Integer, nullable = False)
     status = db.Column(db.Boolean, nullable = False)
     active = db.Column(db.Boolean, nullable = False)
-    userId = db.Column(db.Integer, db.ForeingKey('user.id'), nullable = False)
-    user = db.relationship("User", back_populates="sensors", uselist = False)
-    seisms = db.relationship("Seism", back_populates="sensors", cascade="all, delete-orphan")
+    userId = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = True)
+    user = db.relationship("User", back_populates="sensors", uselist = False, single_parent = True)
+    seisms = db.relationship("Seism", back_populates="sensor", passive_deletes = 'all')
     def __repr__(self):
         return "<Sensor: %r %r %r %r %r %r>" % (self.id, self.name, self.ip, self.port, self.status, self.active)
     def to_json(self):
+        self.user = db.session.query(User).get_or_404(self.userId)
         sensor_json = {
             'id': self.id,
             'name': str(self.name),
@@ -20,6 +22,7 @@ class Sensor(db.Model):
             'port': self.port,
             'status': self.status,
             'active': self.active,
+            'user': self.user.to_json(),
         }
         return sensor_json
     def from_json(sensor_json):
@@ -29,4 +32,5 @@ class Sensor(db.Model):
         port = sensor_json.get('port')
         status = sensor_json.get('status')
         active = sensor_json.get('active')
-        return Sensor(id = id, name = name, ip = ip, port = port, status = status, active = active)
+        userId = sensor_json.get('userId')
+        return Sensor(id = id, name = name, ip = ip, port = port, status = status, active = active, userId = userId)

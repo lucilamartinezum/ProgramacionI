@@ -9,8 +9,8 @@ class Seism(db.Model):
     latitude = db.Column(db.String(100), nullable = False)
     longitude = db.Column(db.String(100), nullable = False)
     verified = db.Column(db.Boolean, nullable = False)
-    sensorId = db.Column(db.Integer, db.ForeignKey('sensor.id'), nullable = False)
-    sensor = db.relationship("Sensor", back_populates="seisms")
+    sensorId = db.Column(db.Integer, db.ForeignKey('sensor.id', ondelete = 'RESTRICT'), nullable = False)
+    sensor = db.relationship("Sensor", back_populates="seisms", uselist=False, single_parent=True)
 
     def __repr__(self):
         return '<Seism: %r %r %r %r %r %r %r>' %(self.id, self.datetime_,self.depth, self.magnitude, self.latitude, self.longitude, self.verified)

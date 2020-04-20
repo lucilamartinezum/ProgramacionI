@@ -14,7 +14,11 @@ class Sensor(Resource):
     def delete(self, id):
         sensor = db.session.query(SensorModel).get_or_404(id)
         db.session.delete(sensor)
-        db.session.commit()
+        try:
+            db.session.commit()
+        except Exception as error:
+            db.session.rollback()
+            return '', 409
         return "Sensor was deleted succesfully", 204
 
     #modificar recurso
@@ -29,7 +33,21 @@ class Sensor(Resource):
 class Sensors(Resource):
     #obtener lista de recursos
     def get(self):
-        sensors = db.session.query(SensorModel).all()
+        #filtrar sensores
+        filters = request.get_json().items()
+        sensors = db.session.query(SensorModel)
+        for key, value in filters:
+            if key == 'userId':
+                sensors = sensors.filter(SensorModel.userId == value)
+            if key == 'name':
+                sensors = sensors.filter(SensorModel.name == value)
+            if key == 'active':
+                sensors = sensors.filter(SensorModel.active == value)
+            if key == 'status':
+                sensors = sensors.filter(SensorModel.status == value)
+            if key == 'port':
+                sensors = sensors.filter(SensorModel.port == value)
+        sensors.all()
         return jsonify({'Sensors': [sensor.to_json() for sensor in sensors]})
 
     #insertar recurso

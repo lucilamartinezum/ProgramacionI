@@ -6,7 +6,7 @@ class User(db.Model):
     password = db.Column(db.String(100), nullable = False)
     admin = db.Column(db.Boolean, nullable = False)
     #relation with sensors
-    sensors = db.relationship("Sensor", back_populates="user", passive_deletes= 'all')
+    sensors = db.relationship("Sensor", back_populates="user")
 
     def __repr__(self):
         return "<Users: %r %r %r>" % (self.id, self.email, self.admin)

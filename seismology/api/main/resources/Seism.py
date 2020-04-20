@@ -39,7 +39,17 @@ class Unverifiedseism(Resource):
 class Unverifiedseisms(Resource):
     # obtener lista de recursos
     def get(self):
-        seisms = db.session.query(SeismModel).filter(SeismModel.verified == False).all()
+        #filtrar sismos no verificados
+        filters = request.get_json().items()
+        seisms = db.session.query(SeismModel).filter(SeismModel.verified == False)
+        for key, value in filters:
+            if key == 'sensorId':
+                seisms = seisms.filter(SeismModel.sensorId == value)
+            if key == 'magnitude':
+                seisms = seisms.filter(SeismModel.magnitude == value)
+            if key == 'id':
+                seisms = seisms.filter(SeismModel.id == value)
+        seisms.all()
         return jsonify({'Unverified-Seisms': [seism.to_json() for seism in seisms]})
 
 
@@ -55,5 +65,15 @@ class Verifiedseism(Resource):
 class Verifiedseisms(Resource):
     # obtener lista de recursos
     def get(self):
-        seisms = db.session.query(SeismModel).filter(SeismModel.verified == True).all()
+        #filtro para sismos verificados
+        filters = request.get_json().items()
+        seisms = db.session.query(SeismModel).filter(SeismModel.verified == True)
+        for key, value in filters:
+            if key == 'sensorId':
+                seisms = seisms.filter(SeismModel.sensorId == value)
+            if key == 'magnitude':
+                seisms = seisms.filter(SeismModel.magnitude == value)
+            if key == 'id':
+                seisms = seisms.filter(SeismModel.id == value)
+        seisms.all()
         return jsonify({'Verified-Seism': [seism.to_json() for seism in seisms]})
