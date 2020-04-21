@@ -17,10 +17,10 @@ class Seism(db.Model):
         return '<Seism: %r %r %r %r %r %r %r>' % (self.id, self.datetime, self.depth, self.magnitude, self.latitude, self.longitude, self.verified)
 
     def to_json(self):
-        self.sensor = db.session.query(SensorModel).get_or_404(self.sensorId),
+        self.sensor = db.session.query(SensorModel).get_or_404(self.sensorId)
         seism_json = {
             'id': self.id,
-            'datetime': self.dt.strftime('%Y-%m-%d %H:%M:%S'),
+            'datetime': self.datetime.strftime('%Y-%m-%d %H:%M:%S'),
             'depth': int(self.depth),
             'magnitude': str(self.magnitude),
             'latitude': str(self.latitude),

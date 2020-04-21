@@ -46,10 +46,6 @@ class Unverifiedseisms(Resource):
         for key, value in filters:
             if key == 'sensorId':
                 seisms = seisms.filter(SeismModel.sensorId == value)
-            if key == 'magnitude':
-                seisms = seisms.filter(SeismModel.magnitude == value)
-            if key == 'id':
-                seisms = seisms.filter(SeismModel.id == value)
         seisms.all()
         return jsonify({'Unverified-Seisms': [seism.to_json() for seism in seisms]})
 
@@ -89,8 +85,8 @@ class Verifiedseisms(Resource):
                 seisms = seisms.filter(SeismModel.sensorId == value)
             if key == 'magnitude':
                 seisms = seisms.filter(SeismModel.magnitude == value)
-            if key == 'id':
-                seisms = seisms.filter(SeismModel.id == value)
+            if key == 'datetime':
+                seisms = seisms.filter(SeismModel.datetime == value)
         seisms.all()
         return jsonify({'Verified-Seism': [seism.to_json() for seism in seisms]})
 
