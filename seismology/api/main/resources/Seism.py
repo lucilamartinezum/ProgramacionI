@@ -98,7 +98,7 @@ class Verifiedseisms(Resource):
             'latitude': uniform(-180, 180),
             'longitude': uniform(-90, 90),
             'verified': True,
-            'sensorId': 2,
+            'sensorId': 1,
         }
         seism = SeismModel.from_json(value_sensor)
         db.session.add(seism)
