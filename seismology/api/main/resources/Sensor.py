@@ -58,9 +58,9 @@ class Sensors(Resource):
                 if value == "name.asc":
                     sensors = sensors.order_by(SensorModel.name.asc())
                 if value == "userId.desc":
-                    sensors = sensors.order_by(SensorModel.user_id.desc())
+                    sensors = sensors.order_by(SensorModel.userId.desc())
                 if value == "userId.asc":
-                    sensors = sensors.order_by(SensorModel.user_id.asc())
+                    sensors = sensors.order_by(SensorModel.userId.asc())
                 if value == "active.desc":
                     sensors = sensors.order_by(SensorModel.active.desc())
                 if value == "active.asc":

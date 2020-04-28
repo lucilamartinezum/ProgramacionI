@@ -113,9 +113,9 @@ class Verifiedseisms(Resource):
 
             if key == "sort_by":
                 if value == "datetime.desc":
-                    seisms = seisms.order_by(SeismModel.datetime.desc)
+                    seisms = seisms.order_by(SeismModel.datetime.desc())
                 if value == "datetime.asc":
-                    seisms = seisms.order_by(SeismModel.datetime.asc)
+                    seisms = seisms.order_by(SeismModel.datetime.asc())
                 if value == "sensor.name.desc":
                     seisms = seisms.join(SeismModel.sensor).order_by(SensorModel.name.desc())
                 if value == "sensor.name.asc":
