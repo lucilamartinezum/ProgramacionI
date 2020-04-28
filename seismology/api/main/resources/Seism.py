@@ -2,6 +2,7 @@ from flask_restful import Resource
 from flask import request, jsonify
 from .. import db
 from main.models import SeismModel
+from main.models import SensorModel
 import time
 from random import uniform, random, randint
 
@@ -40,14 +41,32 @@ class Unverifiedseism(Resource):
 class Unverifiedseisms(Resource):
     # obtener lista de recursos
     def get(self):
+        page = 1
+        per_page = 10
+        max_per_page = 50
         #filtrar sismos no verificados
         filters = request.get_json().items()
         seisms = db.session.query(SeismModel).filter(SeismModel.verified == False)
         for key, value in filters:
+            if key is 'id':
+                seisms = seisms.filter(SeismModel.id == value)
             if key == 'sensorId':
                 seisms = seisms.filter(SeismModel.sensorId == value)
-        seisms.all()
-        return jsonify({'Unverified-Seisms': [seism.to_json() for seism in seisms]})
+            #ORDENAMIENTO
+            if key == "sort_by":
+                if value == "datetime.desc":
+                    seisms = seisms.order_by(SeismModel.datetime.desc())
+                if value == "datetime.asc":
+                    seisms = seisms.order_by(SeismModel.datetime.asc())
+            #PAGINACION
+
+            if key == "page":
+                page = int(value)
+            if key == "per_page":
+                per_page = int(value)
+
+        seisms = seisms.paginate(page, per_page, True, max_per_page)
+        return jsonify({'Unverified-Seisms': [seism.to_json() for seism in seisms.items]})
 
     def post(self):
 
@@ -77,18 +96,39 @@ class Verifiedseism(Resource):
 class Verifiedseisms(Resource):
     # obtener lista de recursos
     def get(self):
+        page = 1
+        per_page = 25
+        max_per_page = 10000
         #filtro para sismos verificados
         filters = request.get_json().items()
         seisms = db.session.query(SeismModel).filter(SeismModel.verified == True)
         for key, value in filters:
-            if key == 'sensorId':
-                seisms = seisms.filter(SeismModel.sensorId == value)
+            if key == 'sensor.name':
+                seisms = seisms.join(SeismModel.sensor).filter(SensorModel.name == value)
             if key == 'magnitude':
                 seisms = seisms.filter(SeismModel.magnitude == value)
             if key == 'datetime':
                 seisms = seisms.filter(SeismModel.datetime == value)
-        seisms.all()
-        return jsonify({'Verified-Seism': [seism.to_json() for seism in seisms]})
+            #ORDENAMIENTO
+
+            if key == "sort_by":
+                if value == "datetime.desc":
+                    seisms = seisms.order_by(SeismModel.datetime.desc)
+                if value == "datetime.asc":
+                    seisms = seisms.order_by(SeismModel.datetime.asc)
+                if value == "sensor.name.desc":
+                    seisms = seisms.join(SeismModel.sensor).order_by(SensorModel.name.desc())
+                if value == "sensor.name.asc":
+                    seisms = seisms.join(SeismModel.sensor).order_by(SensorModel.name.asc())
+
+            #PAGINACION
+            if key == "page":
+                page = int(value)
+            if key == "per_page":
+                per_page = int(value)
+
+        seisms = seisms.paginate(page, per_page, True, max_per_page)  #True para no mostrar error
+        return jsonify({'Verified-Seism': [seism.to_json() for seism in seisms.items]})
 
     def post(self):
         value_sensor = {
