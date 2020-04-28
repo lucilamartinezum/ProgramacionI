@@ -49,7 +49,7 @@ class Sensors(Resource):
                 sensors = sensors.filter(SensorModel.status == value)
             #Filtro user email
             if key == 'user.email':
-                sensors = sensors.join(SensorModel.user).filter(UserModel.email == value)
+                sensors = sensors.join(SensorModel.user).filter(UserModel.email.like('%'+value+'%'))
             # ORDENAMIENTO
 
             if key == "sort_by":
@@ -70,10 +70,10 @@ class Sensors(Resource):
                 if value == "status.asc":
                     sensors = sensors.order_by(SensorModel.status.asc())
             #ORDENAMIENTO POR EMAIL
-            if value == "user.email.desc":
-                sensors = sensors.join(SensorModel.user).order_by(UserModel.email.desc())
-            if value == "user.email.asc":
-                sensors = sensors.join(SensorModel.user).order_by(UserModel.email.asc())
+                if value == "user.email.desc":
+                    sensors = sensors.join(SensorModel.user).order_by(UserModel.email.desc())
+                if value == "user.email.asc":
+                    sensors = sensors.join(SensorModel.user).order_by(UserModel.email.asc())
 
             #PAGINACION
             if key == "page":

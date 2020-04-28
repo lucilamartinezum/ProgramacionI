@@ -48,7 +48,7 @@ class Unverifiedseisms(Resource):
         filters = request.get_json().items()
         seisms = db.session.query(SeismModel).filter(SeismModel.verified == False)
         for key, value in filters:
-            if key is 'id':
+            if key == 'id':
                 seisms = seisms.filter(SeismModel.id == value)
             if key == 'sensorId':
                 seisms = seisms.filter(SeismModel.sensorId == value)
@@ -77,7 +77,7 @@ class Unverifiedseisms(Resource):
             'latitude': uniform(-180, 180),
             'longitude': uniform(-90, 90),
             'verified': False,
-            'sensorId': 2,
+            'sensorId': 8,
         }
         seism = SeismModel.from_json(value_sensor)
         db.session.add(seism)
@@ -104,7 +104,7 @@ class Verifiedseisms(Resource):
         seisms = db.session.query(SeismModel).filter(SeismModel.verified == True)
         for key, value in filters:
             if key == 'sensor.name':
-                seisms = seisms.join(SeismModel.sensor).filter(SensorModel.name == value)
+                seisms = seisms.join(SeismModel.sensor).filter(SensorModel.name.like('%'+value+'%'))
             if key == 'magnitude':
                 seisms = seisms.filter(SeismModel.magnitude == value)
             if key == 'datetime':
