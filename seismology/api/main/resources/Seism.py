@@ -5,8 +5,11 @@ from main.models import SeismModel
 from main.models import SensorModel
 import time
 from random import uniform, random, randint
+from flask_jwt_extended import jwt_required, get_jwt_identity
+from main.auth.decorators import admin_required
 
 class Unverifiedseism(Resource):
+    @jwt_required
     # obtener recurso
     def get(self, id):
         seism = db.session.query(SeismModel).get_or_404(id)
@@ -14,7 +17,7 @@ class Unverifiedseism(Resource):
             return seism.to_json()
         else:
             return 'Denied Access', 403
-
+    @admin_required
     # eliminar recurso
     def delete(self, id):
         seism = db.session.query(SeismModel).get_or_404(id)
@@ -24,7 +27,7 @@ class Unverifiedseism(Resource):
             return 'Unverifield seism was delete succesfully', 204
         else:
             return 'Denied Access', 403
-
+    @admin_required
     # modificar recurso
     def put(self, id):
         seism = db.session.query(SeismModel).get_or_404(id)
@@ -39,6 +42,7 @@ class Unverifiedseism(Resource):
 
 
 class Unverifiedseisms(Resource):
+    @jwt_required
     # obtener lista de recursos
     def get(self):
         page = 1
@@ -67,7 +71,7 @@ class Unverifiedseisms(Resource):
 
         seisms = seisms.paginate(page, per_page, True, max_per_page)
         return jsonify({'Unverified-Seisms': [seism.to_json() for seism in seisms.items]})
-
+    @admin_required
     def post(self):
 
         value_sensor = {
@@ -85,6 +89,7 @@ class Unverifiedseisms(Resource):
         return seism.to_json(), 201
 
 class Verifiedseism(Resource):
+    @jwt_required
     # obtener recurso
     def get(self, id):
         seism = db.session.query(SeismModel).get_or_404(id)
@@ -94,6 +99,7 @@ class Verifiedseism(Resource):
             return 'Denied Access', 403
 
 class Verifiedseisms(Resource):
+    @jwt_required
     # obtener lista de recursos
     def get(self):
         page = 1
@@ -129,7 +135,7 @@ class Verifiedseisms(Resource):
 
         seisms = seisms.paginate(page, per_page, True, max_per_page)  #True para no mostrar error
         return jsonify({'Verified-Seism': [seism.to_json() for seism in seisms.items]})
-
+    @jwt_required
     def post(self):
         value_sensor = {
             'datetime': time.strftime(r"%Y-%m-%d %H:%M:%S", time.localtime()),

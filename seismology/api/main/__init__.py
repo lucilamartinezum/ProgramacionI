@@ -3,9 +3,12 @@ from flask import Flask
 from dotenv import load_dotenv
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
+from flask_jwt_extended import JWTManager
+from main.auth.routes import auth
 
 api = Api()
 db = SQLAlchemy()
+jwt = JWTManager()
 
 def create_app():
     app = Flask(__name__)
@@ -17,6 +20,10 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////'+os.getenv('SQLALCHEMY_DATABASE_PATH')+os.getenv('SQLALCHEMY_DATABASE_NAME')
 
     db.init_app(app)
+
+    app.config['JWT_SECRET_KEY'] = 'programacion12020'
+    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = 3600
+    jwt.init_app(app)
 
     if 'sqlite' in app.config['SQLALCHEMY_DATABASE_URI']:
         def activatePrimaryKeys(conection, conection_record):
@@ -39,4 +46,7 @@ def create_app():
     api.add_resource(resources.UsersResource, '/users')
     api.add_resource(resources.UserResource, '/user/<id>')
     api.init_app(app)
+
+    app.register_blueprint(auth.routes.auth)
+
     return app

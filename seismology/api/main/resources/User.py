@@ -2,14 +2,16 @@ from flask_restful import Resource
 from flask import request, jsonify
 from .. import db
 from main.models import UserModel
-
+from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity, jwt_optional
 
 class User(Resource):
 
+    @jwt_required
     def get(self, id):
         user = db.session.query(UserModel).get_or_404(id)
         return user.to_json()
 
+    @jwt_required
     def put(self, id):
         user = db.session.query(UserModel).get_or_404(id)
         for key, value in request.get_json().items():
@@ -18,6 +20,7 @@ class User(Resource):
         db.session.commit()
         return user.to_json(), 201
 
+    @jwt_required
     def delete(self, id):
         user = db.session.query(UserModel).get_or_404(id)
         db.session.delete(user)
@@ -30,12 +33,16 @@ class User(Resource):
 
 class Users(Resource):
 
+    @jwt_optional
     def get(self):
         users = db.session.query(UserModel).all()
-        return jsonify({'Users': [user.to_json() for user in users]})
+        current_user = get_jwt_identity()
+        if current_user:
+            return jsonify({'Users': [user.to_json() for user in users]})
+        else:
+            return jsonify({'Users': [user.to_json_public() for user in users]})
 
-    def post(self):
-        user = UserModel.from_json(request.get_json())
-        db.session.add(user)
-        db.session.commit()
-        return user.to_json(), 201
+
+
+
+
