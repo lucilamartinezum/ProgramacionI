@@ -33,14 +33,11 @@ class User(Resource):
 
 class Users(Resource):
 
-    @jwt_optional
+    @jwt_required
     def get(self):
         users = db.session.query(UserModel).all()
-        current_user = get_jwt_identity()
-        if current_user:
-            return jsonify({'Users': [user.to_json() for user in users]})
-        else:
-            return jsonify({'Users': [user.to_json_public() for user in users]})
+        return jsonify({'Users': [user.to_json() for user in users]})
+
 
 
 

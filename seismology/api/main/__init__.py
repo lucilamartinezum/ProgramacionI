@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager
-from main.auth.routes import auth
+
 
 api = Api()
 db = SQLAlchemy()
@@ -46,6 +46,9 @@ def create_app():
     api.add_resource(resources.UsersResource, '/users')
     api.add_resource(resources.UserResource, '/user/<id>')
     api.init_app(app)
+
+    from main.auth import routes
+    import main.resources as resources
 
     app.register_blueprint(auth.routes.auth)
 

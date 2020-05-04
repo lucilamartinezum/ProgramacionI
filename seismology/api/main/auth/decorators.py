@@ -9,7 +9,7 @@ def admin_required(fn):
         #probar
         verify_jwt_in_request()
         claims = get_jwt_claims()
-        if claims['admin'] == 'True':
+        if claims['admin']:
             return fn(*args, **kwargs)
         else:
             return 'Only admins can access', 403
