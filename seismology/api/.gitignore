@@ -4,7 +4,7 @@ share/
 lib64
 inluce/
 .env
-.idea
+*.idea
 pyenv.cfg
 **__pycache__/
 

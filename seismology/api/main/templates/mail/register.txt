@@ -1,0 +1,6 @@
+
+Sensores:
+
+{% for sensor in sensorList %}
+ ID: {{sensor.id}} Name: {{sensor.name}}
+{% endfor %}

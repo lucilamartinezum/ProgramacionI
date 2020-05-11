@@ -73,6 +73,10 @@ class Unverifiedseisms(Resource):
         return jsonify({'Unverified-Seisms': [seism.to_json() for seism in seisms.items]})
     @admin_required
     def post(self):
+        sensors = db.session.query(SensorModel).all()
+        sensorsId = []
+        for sensor in sensors:
+            sensorsId.append(sensor.id)
 
         value_sensor = {
             'datetime': time.strftime(r"%Y-%m-%d %H:%M:%S", time.localtime()),
@@ -81,7 +85,7 @@ class Unverifiedseisms(Resource):
             'latitude': uniform(-180, 180),
             'longitude': uniform(-90, 90),
             'verified': False,
-            'sensorId': 1,
+            'sensorId': sensorsId[randint(0, len(sensorsId) - 1)]
         }
         seism = SeismModel.from_json(value_sensor)
         db.session.add(seism)
@@ -135,8 +139,15 @@ class Verifiedseisms(Resource):
 
         seisms = seisms.paginate(page, per_page, True, max_per_page)  #True para no mostrar error
         return jsonify({'Verified-Seism': [seism.to_json() for seism in seisms.items]})
+
+    """
     @jwt_required
+    #crea sismos verificados para testear en la db
     def post(self):
+        sensors = db.session.query(SensorModel).all()
+        sensorsId = []
+        for sensor in sensors:
+            sensorsId.append(sensor.id)
         value_sensor = {
             'datetime': time.strftime(r"%Y-%m-%d %H:%M:%S", time.localtime()),
             'depth': randint(5, 250),
@@ -144,9 +155,10 @@ class Verifiedseisms(Resource):
             'latitude': uniform(-180, 180),
             'longitude': uniform(-90, 90),
             'verified': True,
-            'sensorId': 2,
+            'sensorId': sensorsId[randint(0, len(sensorsId) - 1)]
         }
         seism = SeismModel.from_json(value_sensor)
         db.session.add(seism)
         db.session.commit()
         return seism.to_json(), 201
+    """
