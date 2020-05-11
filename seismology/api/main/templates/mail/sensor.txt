@@ -1,4 +1,3 @@
-
 Sensores:
 
 {% for sensor in sensorList %}

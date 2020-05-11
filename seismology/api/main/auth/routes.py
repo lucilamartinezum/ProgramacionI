@@ -46,7 +46,7 @@ def checkStatus():
         admins = db.session.query(UserModel).filter(UserModel.admin == True).all()
         if admins:
             adminList = [admin.email for admin in admins]
-            sendMail(adminList, "Desactivated sensors", "mail/sensor", sensorList = sensors)
+            sendMail(adminList, "Deactivated sensors", "mail/sensor", sensorList = sensors)
         return jsonify({ 'sensors': [sensor.to_json() for sensor in sensors]})
     else:
-        return "There're no desactivated sensors", 200
+        return "There're no deactivated sensors", 200
