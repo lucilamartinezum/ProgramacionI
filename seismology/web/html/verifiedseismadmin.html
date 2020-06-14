@@ -9,7 +9,7 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="style.css">
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -35,21 +35,31 @@
 
   <!-- Header -->
   <header>
+    <div class="col-sm-12 col-md-12"></div>
     <nav class="navbar navbar-expand-lg">
       <a class="navbar-brand" href="#"><i class="fas fa-arrow-left fa-2x fa-lg"></i></a>
-
         <div class="navbar-nav text-light ml-auto">
-          <a class="nav-item nav-link" href="#"><i class="fas fa-home fa-white fa-2x fa-lg"></i></a>
-          <a class="nav-item nav-link" href="#"><i class="fas fa-server fa-2x fa-lg"></i></a>
+          <div class="nav text-light">
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuBoton">
+              <a href="#" class="dropdown-item">Verified Seisms</a>
+              <a href="#" class="dropdown-item">Users</a>
+              <a href="#" class="dropdown-item">Sensors</a>
+              <a href="#" class="dropdown-item">Log Out</a>
+            </div>
+          </div>
+          <a class="nav" href="#"><i class="fas fa-home fa-2x fa-lg"></i></a>
+          <button class="fas fa-server fa-2x fa-lg" type="button" id="dropdownMenuBoton" data-toggle="dropdown" 
+          aria-haspopup="true" aria-expanded="true">
+          </button>
         </div>
-      </div>
+    </div>
     </nav>
   </header>
   <!-- Breadcrumb -->
   <div class="row">
     <div class="col-sm-12 col-md-12">
       <nav aria-label="breadcrumb">
-        <ol class="breadcrumb" style="background-color: rgb(238, 177, 238);">
+        <ol class="breadcrumb" >
           <li class="breadcrumb-item"><a class="text-dark" href="#">Home</a></li>
           <li class="breadcrumb-item active" class="text-light aria-current="page">Verified Seisms</li>
         </ol>
@@ -102,7 +112,7 @@
             </thead>
             <tbody>
               <tr>
-                <th scope="row">1</th>
+                <td scope="row">1</td>
                 <td>2020-05-30 20:30:32</td>
                 <td>10 m</td>
                 <td>5.2</td>
@@ -123,7 +133,7 @@
                 </td>
               </tr>
               <tr>
-                <th scope="row">2</th>
+                <td scope="row">2</td>
                 <td>2020-06-03 10:30:32</td>
                 <td>6 m</td>
                 <td>5.4</td>
@@ -144,7 +154,7 @@
                 </td>
               </tr>
               <tr>
-                <th scope="row">3</th>
+                <td scope="row">3</td>
                 <td>2020-06-03 10:43:22</td>
                 <td>10 m</td>
                 <td>5.2</td>
@@ -165,7 +175,7 @@
                 </td>
               </tr>
               <tr>
-                <th scope="row">4</th>
+                <td scope="row">4</td>
                 <td>2020-05-03 10:48:32</td>
                 <td>10 m</td>
                 <td>5.2</td>
@@ -186,7 +196,7 @@
                 </td>
               </tr>
               <tr>
-                <th scope="row">5</th>
+                <td scope="row">5</td>
                 <td>2020-06-3 20:30:32</td>
                 <td>10 m</td>
                 <td>5.2</td>
@@ -207,7 +217,7 @@
                 </td>
               </tr>
               <tr>
-                <th scope="row">6</th>
+                <td scope="row">6</td>
                 <td>2020-06-30 21:30:32</td>
                 <td>10 m</td>
                 <td>5.2</td>
@@ -249,10 +259,6 @@
       </nav>
     </div>
   </main>
-
-
-
-
   <!-- Footer -->
   <footer class="footer mt-auto py-3">
     <div class="container">
@@ -261,7 +267,7 @@
       </div>
     </div>
   </footer>
-
+</main>
 </body>
 
 </html>
