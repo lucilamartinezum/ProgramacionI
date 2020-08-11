@@ -28,7 +28,7 @@ class Sensor(Resource):
     def put(self, id):
         sensor = db.session.query(SensorModel).get_or_404(id)
         for key, value in request.get_json().items():
-            setattr(sensor,key, value)
+            setattr(sensor, key, value)
         db.session.add(sensor)
         db.session.commit()
         return sensor.to_json(), 201
