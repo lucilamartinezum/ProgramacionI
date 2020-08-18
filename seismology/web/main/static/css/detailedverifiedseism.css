@@ -14,17 +14,36 @@ input { margin-right: 6px; }
 .navbar-brand{
     color:white;
     padding: 10px;
-}
-.nav{
+}.nav{
     color: white;
     padding: 10px;
     position: relative;
 }
 .navbar-brand:hover{
-    background-color: black;
     color: rgb(238, 177, 238);
+    background-color: black;
 }
 .nav:hover{
+    color:rgb(238, 177, 238);
+    background-color: black;
+}
+.nav li a{
+    text-decoration: none;
+    color: white;
+}
+.cont{
+    margin-left: 50px;
+}
+.btn{
+    background-color: rgb(54, 8, 54);
+    border: 2px solid black;
+    color: white;
+    padding: 20px;
+    margin:10px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.btn:hover{
     background-color: black;
     color:rgb(238, 177, 238);
 }
@@ -48,29 +67,3 @@ input { margin-right: 6px; }
     background-color: rgb(54, 8, 54);
     min-width: 80px;
 }
-.table th{
-    background-color:rgb(54, 8, 54);
-    color: white;
-}
-.table td{
-    background-color: white;
-}
-.table tr:hover td{
-    color:white;
-    background-color: rgb(153, 153, 153);
-}
-.pagination>li>a {
-    background-color: rgb(54, 8, 54);
-    color:white;
-}
-
-.pagination>li>a:focus,
-.pagination>li>a:hover,
-.pagination>li>span:focus,
-.pagination>li>span:hover {
-    color: white;
-    background-color:rgb(0, 0, 0);
-    border-color: #ddd;
-}
-
-

@@ -6,7 +6,7 @@ verified_seism = Blueprint("verified_seism", __name__, url_prefix="/verified-sei
 @verified_seism.route("/")
 def index():
     r = requests.get(current_app.config["API_URL"]+"/verified-seisms",headers={"content-type":"application/json"})
-    verified_seisms = json.loads(r.text)["Verified-seisms"]
+    verified_seisms = json.loads(r.text)["Verified-Seism"]
     title = "Verified Seisms List"
     return render_template("verified-seisms.html", title=title, verified_seisms=verified_seisms)
 

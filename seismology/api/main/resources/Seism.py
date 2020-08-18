@@ -9,7 +9,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from main.auth.decorators import admin_required
 
 class Unverifiedseism(Resource):
-    @jwt_required
+    #@jwt_required
     # obtener recurso
     def get(self, id):
         seism = db.session.query(SeismModel).get_or_404(id)
@@ -42,32 +42,36 @@ class Unverifiedseism(Resource):
 
 
 class Unverifiedseisms(Resource):
-    @jwt_required
+    #@jwt_required
     # obtener lista de recursos
     def get(self):
         page = 1
         per_page = 10
         max_per_page = 50
         #filtrar sismos no verificados
-        filters = request.get_json().items()
-        seisms = db.session.query(SeismModel).filter(SeismModel.verified == False)
-        for key, value in filters:
-            if key == 'id':
-                seisms = seisms.filter(SeismModel.id == value)
-            if key == 'sensorId':
-                seisms = seisms.filter(SeismModel.sensorId == value)
-            #ORDENAMIENTO
-            if key == "sort_by":
-                if value == "datetime.desc":
-                    seisms = seisms.order_by(SeismModel.datetime.desc())
-                if value == "datetime.asc":
-                    seisms = seisms.order_by(SeismModel.datetime.asc())
-            #PAGINACION
 
-            if key == "page":
-                page = int(value)
-            if key == "per_page":
-                per_page = int(value)
+        seisms = db.session.query(SeismModel).filter(SeismModel.verified == False)
+        try:
+            filters = request.get_json().items()
+            for key, value in filters:
+                if key == 'id':
+                    seisms = seisms.filter(SeismModel.id == value)
+                if key == 'sensorId':
+                    seisms = seisms.filter(SeismModel.sensorId == value)
+                #ORDENAMIENTO
+                if key == "sort_by":
+                    if value == "datetime.desc":
+                        seisms = seisms.order_by(SeismModel.datetime.desc())
+                    if value == "datetime.asc":
+                        seisms = seisms.order_by(SeismModel.datetime.asc())
+                #PAGINACION
+
+                if key == "page":
+                    page = int(value)
+                if key == "per_page":
+                    per_page = int(value)
+        except:
+            pass
 
         seisms = seisms.paginate(page, per_page, True, max_per_page)
         return jsonify({'Unverified-Seisms': [seism.to_json() for seism in seisms.items]})
@@ -112,30 +116,33 @@ class Verifiedseisms(Resource):
         #filtro para sismos verificados
         filters = request.get_json().items()
         seisms = db.session.query(SeismModel).filter(SeismModel.verified == True)
-        for key, value in filters:
-            if key == 'sensor.name':
-                seisms = seisms.join(SeismModel.sensor).filter(SensorModel.name.like('%'+value+'%'))
-            if key == 'magnitude':
-                seisms = seisms.filter(SeismModel.magnitude == value)
-            if key == 'datetime':
-                seisms = seisms.filter(SeismModel.datetime == value)
-            #ORDENAMIENTO
+        try:
+            for key, value in filters:
+                if key == 'sensor.name':
+                    seisms = seisms.join(SeismModel.sensor).filter(SensorModel.name.like('%'+value+'%'))
+                if key == 'magnitude':
+                    seisms = seisms.filter(SeismModel.magnitude == value)
+                if key == 'datetime':
+                    seisms = seisms.filter(SeismModel.datetime == value)
+                #ORDENAMIENTO
 
-            if key == "sort_by":
-                if value == "datetime.desc":
-                    seisms = seisms.order_by(SeismModel.datetime.desc())
-                if value == "datetime.asc":
-                    seisms = seisms.order_by(SeismModel.datetime.asc())
-                if value == "sensor.name.desc":
-                    seisms = seisms.join(SeismModel.sensor).order_by(SensorModel.name.desc())
-                if value == "sensor.name.asc":
-                    seisms = seisms.join(SeismModel.sensor).order_by(SensorModel.name.asc())
+                if key == "sort_by":
+                    if value == "datetime.desc":
+                        seisms = seisms.order_by(SeismModel.datetime.desc())
+                    if value == "datetime.asc":
+                        seisms = seisms.order_by(SeismModel.datetime.asc())
+                    if value == "sensor.name.desc":
+                        seisms = seisms.join(SeismModel.sensor).order_by(SensorModel.name.desc())
+                    if value == "sensor.name.asc":
+                        seisms = seisms.join(SeismModel.sensor).order_by(SensorModel.name.asc())
 
-            #PAGINACION
-            if key == "page":
-                page = int(value)
-            if key == "per_page":
-                per_page = int(value)
+                #PAGINACION
+                if key == "page":
+                    page = int(value)
+                if key == "per_page":
+                    per_page = int(value)
+        except:
+            pass
 
         seisms = seisms.paginate(page, per_page, True, max_per_page)  #True para no mostrar error
         return jsonify({'Verified-Seism': [seism.to_json() for seism in seisms.items]})
