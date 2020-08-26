@@ -75,7 +75,7 @@ class Unverifiedseisms(Resource):
 
         seisms = seisms.paginate(page, per_page, True, max_per_page)
         return jsonify({'Unverified-Seisms': [seism.to_json() for seism in seisms.items]})
-    @admin_required
+    #@admin_required
     def post(self):
         sensors = db.session.query(SensorModel).all()
         sensorsId = []
@@ -97,7 +97,7 @@ class Unverifiedseisms(Resource):
         return seism.to_json(), 201
 
 class Verifiedseism(Resource):
-    @jwt_required
+    #@jwt_required
     # obtener recurso
     def get(self, id):
         seism = db.session.query(SeismModel).get_or_404(id)
@@ -107,16 +107,18 @@ class Verifiedseism(Resource):
             return 'Denied Access', 403
 
 class Verifiedseisms(Resource):
-    @jwt_required
+    #@jwt_required
     # obtener lista de recursos
     def get(self):
         page = 1
         per_page = 25
         max_per_page = 10000
-        #filtro para sismos verificados
-        filters = request.get_json().items()
+
+
         seisms = db.session.query(SeismModel).filter(SeismModel.verified == True)
         try:
+            # filtro para sismos verificados
+            filters = request.get_json().items()
             for key, value in filters:
                 if key == 'sensor.name':
                     seisms = seisms.join(SeismModel.sensor).filter(SensorModel.name.like('%'+value+'%'))

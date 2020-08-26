@@ -1,5 +1,5 @@
 <!-- Hereda del template main -->
-{% extends "main.html" %}
+{% extends "main_admin.html" %}
 
 <!-- Importar el archivo de macros -->
 {% import 'macros.html' as macros %}
@@ -7,6 +7,29 @@
 <!-- Define el contenido -->
 {% block content %}
 <!-- Contenido -->
+<form class="form-inline my-2 my-lg-0 justify-content-center">
+    <i class="fas fa-filter fa-2x fa-lg"></i>
+      <select class="custom-select">
+        <option selected>Select one option for filter</option>
+        <option value="1">Date Time</option>
+        <option value="2">Depth</option>
+        <option value="3">Magnitude</option>
+        <option value="4">Latitude</option>
+        <option value="5">Longitude</option>
+        <option value="6">Sensors</option>
+      </select>
+    <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Filter</button>
+     Date Time:<input class="form-control mr-sm-1" type="datetime" placeholder="Since" aria-label="Since">
+    <input class="form-control mr-sm-1" type="datetime" placeholder="Until" aria-label="Until">
+    <i class="fas fa-sort-alpha-down fa-2x fa-lg"></i>
+      <select class="custom-select">
+        <option selected>Select one option for filter</option>
+        <option value="1">A-Z</option>
+        <option value="2">Z-A</option>
+      </select>
+  </form>
+
+  </br>
 <main>
   <div class="container-fluid">
     <div class="row justify-content-center">
@@ -16,10 +39,10 @@
 
         <!-- Tabla -->
         <div class="table-responsive text-center">
-          <table class="table table-dark table-striped table-hover table-bordered">
+          <table class="table table-striped table-bordered">
             <thead>
               <tr>
-                <th scope="col">#</th>
+                <th scope="col">ID</th>
                 <th scope="col">Date Time</th>
                 <th scope="col">Depth</th>
                 <th scope="col">Magnitude</th>

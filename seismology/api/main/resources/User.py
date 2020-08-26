@@ -33,10 +33,23 @@ class User(Resource):
 
 class Users(Resource):
 
-    @jwt_required
+    #@jwt_required
     def get(self):
         users = db.session.query(UserModel).all()
         return jsonify({'Users': [user.to_json() for user in users]})
+
+        # @admin_required
+
+    def post(self):
+        user = UserModel.from_json(request.get_json())
+        emailDuplicate = (db.session.query(UserModel).filter(
+            UserModel.email == user.email).scalar() is not None)
+        if emailDuplicate:
+            return "Email already in use", 409
+        else:
+            db.session.add(user)
+            db.session.commit()
+            return user.to_json(), 201
 
 
 
