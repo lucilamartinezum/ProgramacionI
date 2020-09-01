@@ -6,12 +6,12 @@ from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identi
 
 class User(Resource):
 
-    @jwt_required
+    #@jwt_required
     def get(self, id):
         user = db.session.query(UserModel).get_or_404(id)
         return user.to_json()
 
-    @jwt_required
+    #@jwt_required
     def put(self, id):
         user = db.session.query(UserModel).get_or_404(id)
         for key, value in request.get_json().items():
@@ -20,7 +20,7 @@ class User(Resource):
         db.session.commit()
         return user.to_json(), 201
 
-    @jwt_required
+    #@jwt_required
     def delete(self, id):
         user = db.session.query(UserModel).get_or_404(id)
         db.session.delete(user)

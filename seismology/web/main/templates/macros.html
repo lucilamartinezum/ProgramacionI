@@ -30,7 +30,7 @@
     <td>
     <div class="btn-group" role="group">
         <button type="button" class="btn btn-sm" data-toggle="tooltip" title="delete">
-          <a href="#"><i class="fas fa-trash"></i></a>
+          <a href="{{url_for('user.delete',id=user.id)}}"><i class="fas fa-trash"></i></a>
         </button>
         <button type="button" class="btn btn-sm" data-toggle="tooltip" title="modify">
           <a href="{{ url_for('user.edit',id=user.id) }}"><i class="fas fa-edit"></i></a>

@@ -24,3 +24,17 @@ class UserForm(FlaskForm):
 
     # Definicion de campo Sumbit
     submit = SubmitField("Send")
+
+class UserEdit(FlaskForm):
+
+    # Definicion de campo Email
+    email = EmailField("E-mail", [
+        validators.Required(message = "E-mail is required"),
+        validators.Email(message = "Format not valid"),
+    ])
+
+    # Definicion de campo Admin
+    admin = BooleanField("Admin")
+
+    # Definicion de campo Sumbit
+    submit = SubmitField("Send")

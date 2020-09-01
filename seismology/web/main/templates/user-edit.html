@@ -16,8 +16,8 @@
       <div class="row">
         <div class="col-md-2 d-none d-md-block"></div>
            <div class="col-md-8">
-            <h1>New User</h1>
-            <form method="POST" action="{{ url_for('user.create') }}">
+            <h1>Edit User</h1>
+            <form method="POST" action="{{ url_for('user.edit', id = id) }}">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 
                 <div class="form-group">
@@ -30,7 +30,7 @@
                 <div class="form-group">
                     <div class="col-auto">
                         {{ show_field(form.password, class="form-control") }} <br>
-                        {{ show_field(form.confirm, class="form-control") }}
+
                     </div>
                 </div>
                 <div class="form-group align-items-center">
