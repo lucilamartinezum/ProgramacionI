@@ -7,12 +7,12 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from main.auth.decorators import admin_required
 
 class Sensor(Resource):
-    @jwt_required
+    #@jwt_required
     #obtener recurso
     def get(self, id):
         sensor = db.session.query(SensorModel).get_or_404(id)
         return sensor.to_json()
-    @admin_required
+    #@admin_required
     #eliminar recurso
     def delete(self, id):
         sensor = db.session.query(SensorModel).get_or_404(id)
@@ -23,7 +23,7 @@ class Sensor(Resource):
             db.session.rollback()
             return '', 409
         return "Sensor was deleted succesfully", 204
-    @admin_required
+    #@admin_required
     #modificar recurso
     def put(self, id):
         sensor = db.session.query(SensorModel).get_or_404(id)
@@ -38,16 +38,17 @@ class Sensor(Resource):
 
 
 class Sensors(Resource):
-    @jwt_required
+    #@jwt_required
     #obtener lista de recursos
     def get(self):
         page = 1
         per_page = 25
         max_per_page = 50
         #filtrar sensores
-        filters = request.get_json().items()
+
         sensors = db.session.query(SensorModel)
         try:
+            filters = request.get_json().items()
             for key, value in filters:
                 if key == 'userId':
                     sensors = sensors.filter(SensorModel.userId == value)
@@ -93,7 +94,7 @@ class Sensors(Resource):
 
         sensors = sensors.paginate(page, per_page, True, max_per_page)
         return jsonify({'Sensors': [sensor.to_json() for sensor in sensors.items]})
-    @admin_required
+    #@admin_required
     #insertar recurso
     def post(self):
         sensor = SensorModel.from_json(request.get_json())

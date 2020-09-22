@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, current_app, redirect, url_for
 from flask_breadcrumbs import register_breadcrumb, default_breadcrumb_root
 from ..forms.user_form import UserForm, UserEdit
 
+
 import requests, json
 
 user = Blueprint("user", __name__, url_prefix="/user")
@@ -35,10 +36,11 @@ def create():
 @user.route("/edit/<int:id>", methods=["GET","POST"])
 @register_breadcrumb(user, ".edit", "Edit User")
 def edit(id):
-    form = UserEditForm()
+    form = UserEdit()
     url = current_app.config["API_URL"]+"/user/"+str(id)
     if not form.is_submitted():
         r = requests.get(url, headers={"content-type":"application/json"})
+        #r = sendRequest(method="get", url="/user/" + str(id), auth=True)
         if (r.status_code == 404):
             flash("User not found","danger")
             return redirect(url_for("user.index"))
@@ -58,10 +60,12 @@ def edit(id):
     return render_template("user-edit.html", form=form, id=id)
 
 
-@user.route('/user/delete/<int:id>')
-def delete_user(id):
+@user.route('delete/<int:id>')
+def delete(id):
     url = current_app.config["API_URL"] + "/user/" + str(id)
-    requests.delete(url=url, headers={'content-type': 'application/json'})
+    requests.delete(url, headers={'content-type': 'application/json'})
+    #r = sendRequest(method="delete", url="/user/" + str(id), auth=True)
+    flash("User deleted", "danger")
     return redirect(url_for('user.index'))
 
 

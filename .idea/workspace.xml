@@ -1,14 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="918a2be8-cca0-47d6-ae23-e53fd2402fe9" name="Default Changelist" comment="" />
+    <list default="true" id="918a2be8-cca0-47d6-ae23-e53fd2402fe9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/seismology/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seismology/api/main/templates/mail/sensor.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seismology/web/main/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seismology/web/main/forms/login.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seismology/web/main/forms/sensor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seismology/web/main/forms/unverified-seism-form.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seismology/web/main/forms/user_form.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seismology/web/main/routes/login.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seismology/web/main/routes/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seismology/web/main/routes/sensor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seismology/web/main/routes/user.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seismology/web/main/routes/verified_seism.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seismology/web/main/templates/add-sensor.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seismology/web/main/templates/admin-home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seismology/web/main/templates/edit-sensor.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seismology/web/main/templates/edit-unverifiedseism.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seismology/web/main/templates/form_macros.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seismology/web/main/templates/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seismology/web/main/templates/seismologist-home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seismology/web/main/templates/sensor-view.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seismology/web/main/templates/sensors.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seismology/web/main/templates/user-edit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seismology/web/main/templates/user_form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seismology/web/main/templates/users.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/seismology/web/main/utilities/functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/programacionI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/programacionI.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seismology/api/.env-example" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/.env-example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seismology/api/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seismology/api/main/auth/decorators.py" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/main/auth/decorators.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seismology/api/main/auth/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/main/auth/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seismology/api/main/mail/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/main/mail/functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seismology/api/main/resources/Seism.py" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/main/resources/Seism.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seismology/api/main/resources/Sensor.py" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/main/resources/Sensor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seismology/api/main/resources/User.py" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/main/resources/User.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seismology/api/main/templates/mail/register.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/seismology/api/seismology.db" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/seismology.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seismology/web/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seismology/web/boot.sh" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/boot.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seismology/web/install.sh" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/install.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seismology/web/pyvenv.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/pyvenv.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seismology/web/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seismology/web/web.py" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/app.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/seismology" />
   </component>
   <component name="ProjectId" id="1bVQgYxKR7zRQ1ybTDI6uodJUbV" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -17,9 +70,12 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -32,5 +88,11 @@
       <updated>1588714892607</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="205" y="31" key="SettingsEditor" timestamp="1600715839986">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="205" y="31" key="SettingsEditor/67.27.1299.741@67.27.1299.741" timestamp="1600715839986" />
   </component>
 </project>

@@ -1,0 +1,93 @@
+<!-- Hereda del template main -->
+{% extends "main.html" %}
+
+<!-- Importar el archivo de macros -->
+{% import "macros.html" as macro %}
+
+<!-- Define el contenido -->
+{% block content %}
+<!-- Contenido -->
+
+  <!-- Filtro -->
+  <form class="form-inline my-2 my-lg-0 justify-content-center">
+  <h1>Sensors</h1>
+    <button class="btn btn-outline-dark my-2 my-sm-0" type="submit"><i class="fas fa-plus"></i> Add New Sensor</button>
+    <select class="custom-select">
+      <option selected>Select one option for filter</option>
+      <option value="1">Name</option>
+      <option value="2">Status</option>
+      <option value="3">Active</option>
+      <option value="4">User Associated</option>
+    </select>
+    <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Filter</button>
+    <i class="fas fa-sort-alpha-down fa-2x fa-lg"></i>
+      <select class="custom-select">
+        <option selected>Sort by</option>
+        <option value="1">A-Z</option>
+        <option value="2">Z-A</option>
+      </select>
+  </form>
+
+  </br>
+
+
+  <div class="row justify-content-center">
+    <div class="col-md-auto d-none d-md-block"></div>
+    <div class="col-md-auto">
+      <table class="table table-bordered table-responsive">
+        <thead class="thead-dark">
+
+
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Status</th>
+            <th scope="col">Active</th>
+            <th scope="col">User Associated</th>
+            <th scope="col">Actions</th>
+          </tr>
+
+        </thead>
+        <tbody>
+
+          {% for sensor in sensors %}
+          {{ macro.show_sensor(sensor) }}
+          {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-auto d-none d-md-block thead-dark"></div>
+  </div>
+
+
+<br>
+
+<!-- Pagination -->
+  <nav aria-label="...">
+    <ul class="pagination justify-content-center">
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1">Previous</a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item active">
+        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" href="#">4</a></li>
+      <li class="page-item"><a class="page-link" href="#">5</a></li>
+      <li class="page-item"><a class="page-link" href="#">6</a></li>
+      <li class="page-item"><a class="page-link" href="#">7</a></li>
+      <li class="page-item"><a class="page-link" href="#">8</a></li>
+      <li class="page-item"><a class="page-link" href="#">9</a></li>
+      <li class="page-item"><a class="page-link" href="#">10</a></li>
+
+      <li class="page-item">
+        <a class="page-link" href="#">Next</a>
+      </li>
+    </ul>
+  </nav>
+
+<br>
+<!-- Fin Contenido -->
+{% endblock %}

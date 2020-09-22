@@ -45,10 +45,10 @@
         <div class="navbar-nav text-light ml-auto">
           <div class="nav text-light">
             <div class="dropdown-menu" aria-labelledby="dropdownMenuBoton">
-              <a href="#" class="dropdown-item">Verified Seisms</a>
+              <a href="{{url_for('verified_seism.index')}}" class="dropdown-item">Verified Seisms</a>
             </div>
           </div>
-          <a class="nav" href="#"><i class="fas fa-home fa-2x fa-lg"></i></a>
+          <a class="nav" href="{{url_for('verified_seism.index')}}"><i class="fas fa-home fa-2x fa-lg"></i></a>
           <button class="fas fa-server fa-2x fa-lg" type="button" id="dropdownMenuBoton" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="true">
           </button>
@@ -90,7 +90,7 @@
   <footer class="footer mt-auto py-3">
     <div class="container">
       <div class="text-center text-light">
-        <a class="text-light" href="{{url_for('verified_seism.index')}}">Verified Seisms</a> |
+        <a class="text-light" href="{{url_for('verified_seism.index')}}">Verified Seisms</a>
       </div>
     </div>
   </footer>
