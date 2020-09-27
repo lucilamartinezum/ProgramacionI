@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, current_app, redirect, url_for
+from flask import Blueprint, render_template, current_app, redirect, url_for, flash
 from flask_breadcrumbs import register_breadcrumb, default_breadcrumb_root
 from ..forms.user_form import UserForm, UserEdit
 
@@ -30,7 +30,7 @@ def create():
         print(data)
         r = requests.post(current_app.config["API_URL"]+"/users",headers={"content-type":"application/json"}, data=data)
         print(r)
-        return redirect(url_for("user.index")) # Redirecciona a la lista
+        return redirect(url_for("user.index")) # Redirecciona a la lista de usuarios
     return render_template("user_form.html", form=form)
 
 @user.route("/edit/<int:id>", methods=["GET","POST"])

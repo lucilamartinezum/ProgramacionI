@@ -1,0 +1,67 @@
+{% extends "main_admin.html" %}
+
+<!-- Importar el archivo de macros -->
+{% import "macros.html" as macro %}
+
+<!-- Define el contenido -->
+{% block content %}
+  <!-- Contenido -->
+<main>
+	<center><h1>Select an Option</h1></center>
+	</br>
+
+	<div class="row justify-content-center">
+	  <div class="col-sm-auto">
+
+		<div class="card">
+		  <div class="card-body">
+		<img src="/static/img/sensor.jpeg" class="img-circle">
+			<p class="card-text"></p>
+		  </div>
+             <button type="button"  class="btn btn-sm" data-toggle="tooltip">
+				<a href="{{url_for('sensor.index')}}">SENSORS</a>
+			</button>
+		</div>
+	  </div>
+	  <div class="col-sm-auto">
+		<div class="card">
+		  <div class="card-body">
+		<img src="/static/img/seism.jpeg">
+			<p class="card-text"></p>
+		  </div>
+             <button type="button"  class="btn btn-sm" data-toggle="tooltip">
+				<a href="{{url_for('verified_seism.index')}}">VERIFIED SEISMS</a>
+			</button>
+		</div>
+	  </div>
+
+	  <div class="col-sm-auto">
+		  <div class="card">
+		    <div class="card-body">
+		  <img src="/static/img/users2.jpeg" class="img-circle">
+			  <p class="card-text"></p>
+		    </div>
+               <button type="button"  class="btn btn-sm" data-toggle="tooltip">
+				<a href="{{url_for('user.index')}}">USERS</a>
+			</button>
+		  </div>
+	  </div>
+
+	  <div class="col-sm-auto">
+		<div class="card">
+		  <div class="card-body">
+		<img src="/static/img/unverifiedseism.jpeg" class="img-circle">
+			<p class="card-text"></p>
+		  </div>
+            <button type="button"  class="btn btn-sm" data-toggle="tooltip">
+				<a href="{{url_for('unverified_seism.index')}}">UNVERIFIED SEISMS</a>
+			</button>
+		</div>
+	  </div>
+
+	</div>
+
+
+</br></br></br></br></br></br>
+</main>
+{% endblock %}

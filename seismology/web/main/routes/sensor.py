@@ -8,7 +8,6 @@ sensor = Blueprint("sensor", __name__, url_prefix="/sensor")
 @register_breadcrumb(sensor,".",'Sensors')
 def index():
     r = requests.get(current_app.config["API_URL"]+"/sensors",headers={"content-type":"application"}, json={})
-    print("este es el error---->", r)
     sensors = json.loads(r.text)['Sensors']
     title = "Sensors"
     return render_template("sensors.html",title=title,sensors=sensors)

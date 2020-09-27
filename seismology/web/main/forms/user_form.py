@@ -15,7 +15,7 @@ class UserForm(FlaskForm):
     password = PasswordField("Password", [
         validators.Required(),
         # El campo de contraseña debe coincidir con el de confirmar
-        validators.EqualTo("confirm", message = "Passwords dont match")
+        validators.EqualTo("confirm", message = "Passwords don't match")
     ])
 
     confirm = PasswordField("Repeat Password")
