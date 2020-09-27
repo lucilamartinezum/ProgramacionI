@@ -20,6 +20,7 @@ class User(Resource):
         db.session.commit()
         return user.to_json(), 201
 
+
     #@jwt_required
     def delete(self, id):
         user = db.session.query(UserModel).get_or_404(id)
