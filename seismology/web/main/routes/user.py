@@ -55,7 +55,7 @@ def edit(id):
         }
         data = json.dumps(user)
         r = requests.put(url, headers={"content-type":"application/json"}, data=data)
-        flash("User edited","success")
+        flash("User has been edited","success")
         return redirect(url_for("user.index"))
     return render_template("user-edit.html", form=form, id=id)
 
@@ -65,7 +65,7 @@ def delete(id):
     url = current_app.config["API_URL"] + "/user/" + str(id)
     requests.delete(url, headers={'content-type': 'application/json'})
     #r = sendRequest(method="delete", url="/user/" + str(id), auth=True)
-    flash("User deleted", "danger")
+    flash("User has been deleted", "danger")
     return redirect(url_for('user.index'))
 
 

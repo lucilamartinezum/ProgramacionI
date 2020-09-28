@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, current_app, redirect, url_for
+from flask import Blueprint, render_template, current_app, redirect, url_for, flash
 import requests, json
 from flask_breadcrumbs import register_breadcrumb
 
@@ -21,3 +21,12 @@ def view(id):
     verified_seism = json.loads(r.text)
     title = "Verified Seism View"
     return render_template("verified-seism.html", title=title, verified_seism=verified_seism)
+
+@verified_seism.route('delete/<int:id>')
+def delete(id):
+    url = current_app.config["API_URL"] + "/verified-seism/" + str(id)
+    requests.delete(url, headers={'content-type': 'application/json'})
+    #r = sendRequest(method="delete", url="/user/" + str(id), auth=True)
+    flash("Verified Seism has been deleted", "danger")
+    return redirect(url_for('verified_seism.index'))
+

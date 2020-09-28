@@ -3,6 +3,7 @@ from wtforms import PasswordField,SubmitField, BooleanField # Importa campos
 from wtforms.fields.html5 import EmailField # Importa campos HTML
 from wtforms import validators # Importa validaciones
 
+
 class UserForm(FlaskForm):
 
     # Definicion de campo Email

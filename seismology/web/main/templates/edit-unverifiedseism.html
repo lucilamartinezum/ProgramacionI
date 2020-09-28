@@ -1,110 +1,62 @@
+<!-- Hereda del template main -->
+{% extends "main.html" %} {# Herencia #}
 
-<center><h1>Edit Unverified Seism {{unverified_seism.id}}</h1></center>
-</br>
+<!-- Importar el archivo de macros -->
+{% import "macros.html" as macro %}
 
-<div class="media justify-content-center">
+<!-- Importar macros de formulario -->
+{% from "form_macros.html" import show_field, show_submit, show_checkbox %}
 
-  <div class="row col-md-auto justify-content-center">
-    <div class="col-md-auto d-none d-ml-auto"></div>
-    <div class="col-md-auto ">
+<!-- Define el contenido -->
+{% block content %}
+<!-- Contenido -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 d-none d-md-block"></div>
+    <div class="col-auto justify-content-center">
+      <h1>Edit Seism</h1>
+      <br>
+      <form method="POST" action="{{ url_for("unverified_seism.edit", id=id) }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 
-<div class="card text-center">
-  <div class="card-body">
+        <div class="form-group">
+          <div class="col-auto">
+            {{show_field(form.depth, type="form-control")}}
+          </div>
+        </div>
 
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
+        <div class="form-group">
+          <div class="col-auto">
+            {{show_field(form.magnitude, type="form-control")}}
+          </div>
+        </div>
 
-      <th class="bg-dark text-white" scope="row">Seism</th>
-      <th scope="col">Data</th>
+        <div class="form-group">
+          <div class="col-auto">
+            {{show_field(form.latitude, type="form-control")}}
+          </div>
+        </div>
 
-    </tr>
-  </thead>
+        <div class="form-group">
+          <div class="col-auto">
+            {{show_field(form.longitude, type="form-control")}}
+          </div>
+        </div>
 
-  <tbody>
-    <tr>
-      <th class="bg-dark text-white" scope="row">DATE TIME</th>
-      <td>
-          <form>
-              <div class="form-group">
-                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Date"><input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Time">
-              </div>
-        </form>
-      </td>
+        <div class="form-group">
+          <div class="col-auto">
+            {{show_field(form.verified, type="checkbox")}}
+          </div>
+        </div>
 
-    </tr>
-    <tr>
-    </tr>
-    <tr>
-      <th class="bg-dark text-white" scope="row">DEPTH</th>
-      <td>
-          <form>
-              <div class="form-group">
-                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Depht">
-              </div>
-        </form>
-      </td>
-    </tr>
-    <tr>
-      <th class="bg-dark text-white" scope="row">MAGNITUDE</th>
-      <td>
-          <form>
-              <div class="form-group">
-                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Magnitude">
-              </div>
-        </form>
-      </td>
-    </tr>
+        <div class="col-auto">
+          {{show_submit(form.submit, class="btn btn-success")}}
+        </div>
 
-	<tr>
-		<th class="bg-dark text-white" scope="row">LONGITUDE</th>
-        <td>
-          <form>
-              <div class="form-group">
-                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Longitude">
-              </div>
-        </form>
-      </td>
-	</tr>
-
-	<tr>
-      <th class="bg-dark text-white" scope="row">LATITUDE</th>
-      <td>
-          <form>
-              <div class="form-group">
-                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Latitude">
-              </div>
-        </form>
-      </td>
-
-    </tr>
-  <tr>
-      <th class="bg-dark text-white" scope="row">SENSOR</th>
-      <td>
-          <form>
-              <select class="form-control">
-                  <option selected>Select one option for filter</option>
-                    <option>{{unverified_seism.sensor.name}}</option>
-              </select>
-        </form>
-      </td>
-
-    </tr>
-
-  </tbody>
-</table>
-      <button class="btn btn-outline-dark my-2 my-sm-0" type="submit"><i class="fas fa-save"></i></i> Save</button>
-      <button class="btn btn-outline-dark my-2 my-sm-0" type="submit"><i class="fas fa-window-close"></i></i> Cancel</button>
-</p>
-		</div>
-
-	</div>
-
-</div>
-
-<div class="col-md-auto d-none d-md-block thead-dark"></div>
-
+      </form>
+    </div>
+    <div class="col-md-4 d-none d-md-block"></div>
   </div>
-
-
-
+</div>
+<!-- Fin Contenido -->
+{% endblock %}
