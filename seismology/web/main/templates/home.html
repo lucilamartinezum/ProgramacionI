@@ -1,4 +1,4 @@
-{% extends "main_admin.html" %}
+{% extends "main.html" %}
 
 <!-- Importar el archivo de macros -->
 {% import "macros.html" as macro %}
@@ -18,9 +18,7 @@
 		<img src="/static/img/sensor.jpeg" class="img-circle">
 			<p class="card-text"></p>
 		  </div>
-             <button type="button"  class="btn btn-sm" data-toggle="tooltip">
-				<a href="{{url_for('sensor.index')}}">SENSORS</a>
-			</button>
+             <a type="button" class="btn btn-sm" data-toggle="tooltip" href="{{url_for('sensor.index')}}">SENSORS</a>
 		</div>
 	  </div>
 	  <div class="col-sm-auto">
@@ -29,9 +27,7 @@
 		<img src="/static/img/seism.jpeg">
 			<p class="card-text"></p>
 		  </div>
-             <button type="button"  class="btn btn-sm" data-toggle="tooltip">
-				<a href="{{url_for('verified_seism.index')}}">VERIFIED SEISMS</a>
-			</button>
+            <a type="button" class="btn btn-sm" data-toggle="tooltip" href="{{url_for('verified_seism.index')}}">VERIFIED SEISMS</a>
 		</div>
 	  </div>
 
@@ -41,9 +37,7 @@
 		  <img src="/static/img/users2.jpeg" class="img-circle">
 			  <p class="card-text"></p>
 		    </div>
-               <button type="button"  class="btn btn-sm" data-toggle="tooltip">
-				<a href="{{url_for('user.index')}}">USERS</a>
-			</button>
+               <a type="button" class="btn btn-sm" data-toggle="tooltip" href="{{url_for('user.index')}}">USERS</a>
 		  </div>
 	  </div>
 
@@ -53,9 +47,9 @@
 		<img src="/static/img/unverifiedseism.jpeg" class="img-circle">
 			<p class="card-text"></p>
 		  </div>
-            <button type="button"  class="btn btn-sm" data-toggle="tooltip">
-				<a href="{{url_for('unverified_seism.index')}}">UNVERIFIED SEISMS</a>
-			</button>
+
+				<a type="button" class="btn btn-sm" data-toggle="tooltip" href="{{url_for('unverified_seism.index')}}">UNVERIFIED SEISMS</a>
+
 		</div>
 	  </div>
 

@@ -11,7 +11,7 @@
   <!-- Filtro -->
   <form class="form-inline my-2 my-lg-0 justify-content-center">
   <h1>Sensors</h1>
-    <button class="btn btn-outline-dark my-2 my-sm-0" type="submit"><i class="fas fa-plus"></i> Add New Sensor</button>
+    <a href="{{ url_for('sensor.create') }}" role="button" class="btn btn-outline-dark my-2 my-sm-1 center" type="submit"><i class="fas fa-save"></i> Add sensor </i></a>
     <select class="custom-select">
       <option selected>Select one option for filter</option>
       <option value="1">Name</option>

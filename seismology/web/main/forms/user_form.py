@@ -23,7 +23,7 @@ class UserForm(FlaskForm):
     admin = BooleanField("Admin?")
 
     # Definicion de campo Sumbit
-    submit = SubmitField("Send")
+    submit = SubmitField("Add")
 
 class UserEdit(FlaskForm):
 
