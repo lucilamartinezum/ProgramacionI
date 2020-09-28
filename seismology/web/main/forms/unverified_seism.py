@@ -5,15 +5,6 @@ from wtforms import validators  # Importa validaciones
 
 class UnverifiedSeismEdit(FlaskForm):
 
-    latitude = StringField(
-        label="Latitude",
-        validators=[validators.DataRequired(message="This field is required")]
-    )
-
-    longitude = StringField(
-        label="Longitude",
-        validators=[validators.DataRequired(message="This field is required")]
-    )
     # Definicion de campo Integer
     depth = IntegerField(
         label="Depth",

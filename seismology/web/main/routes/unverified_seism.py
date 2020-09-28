@@ -37,19 +37,15 @@ def edit(id):
         unverified_seism = json.loads(r.text)
         form.depth.data = unverified_seism["depth"]
         form.magnitude.data = unverified_seism["magnitude"]
-        form.latitude.data = unverified_seism["latitude"]
-        form.longitude.data = unverified_seism["longitude"]
         form.verified.data = unverified_seism["verified"]
 
     if form.validate_on_submit():
-        user = {
+        unverified_seism = {
             "depth": form.depth.data,
             "magnitude": form.magnitude.data,
-            "latitude": form.latitude.data,
-            "longitude": form.longitude.data,
             "verified": form.verified.data,
         }
-        data = json.dumps(user)
+        data = json.dumps(unverified_seism)
         r = requests.put(url, headers={"content-type":"application/json"}, data=data)
         flash("Unverified Seism has been edited","success")
         return redirect(url_for("unverified_seism.index"))

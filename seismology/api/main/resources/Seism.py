@@ -17,7 +17,7 @@ class Unverifiedseism(Resource):
             return seism.to_json()
         else:
             return 'Denied Access', 403
-    @admin_required
+    #@admin_required
     # eliminar recurso
     def delete(self, id):
         seism = db.session.query(SeismModel).get_or_404(id)
@@ -27,7 +27,7 @@ class Unverifiedseism(Resource):
             return 'Unverifield seism was delete succesfully', 204
         else:
             return 'Denied Access', 403
-    @admin_required
+    #@admin_required
     # modificar recurso
     def put(self, id):
         seism = db.session.query(SeismModel).get_or_404(id)
