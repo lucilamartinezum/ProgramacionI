@@ -5,7 +5,7 @@
 {% import "macros.html" as macro %}
 
 <!-- Importar macros de formulario -->
-{% from "form_macros.html" import show_field, show_submit %}
+{% from "form_macros.html" import show_field, show_submit, show_placeholder %}
 
 <!-- Define el contenido -->
 {% block content %}
@@ -18,41 +18,36 @@
     <div class="col-md-auto d-none d-ml-auto"></div>
     <div class="col-md-16">
 
-<div class="card text-center">
-
-	<img style="width: 230px;"  class="ImagenDeUsers" src="/static/img/users.png">
-  <div class="card-body">
-    <h5 class="card-title">Login</h5>
-    <p class="card-text">
-
-<table class="table">
-
-  <tbody>
-		<tr>
-		  <form class="dropdown-menu p-4">
-	  <div class="form-group">
-		<input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="Enter Email">
-	  </div>
-	  <div class="form-group">
-		<input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password">
-	  </div>
-	  <button type="submit" class="btn btn-dark">Sign in</button>
-		</form>
-
-		</tr>
-
-  </tbody>
-</table>
-</p>
-		</div>
-
+	<div class="card text-center">
+  	<div class="card-body">
+		<img style="width: 230px;"  class="ImagenDeUsers" src="/static/img/users2.jpeg">
+    	<h5 class="card-title">Login</h5>
+    	<p class="card-text">
+		<table class="table">
+		  <tbody>
+				<tr>
+				  <form method="POST" action="{{ url_for('login.login') }}">
+					<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+					<div class="form-row">
+					  <div class="form-group col-auto">
+						{{ show_placeholder(loginForm.email, class="form-control mr-sm-2") }}
+					  </div>
+					  <div class="form-group col-auto">
+						{{ show_placeholder(loginForm.password, class="form-control") }}
+					  </div>
+					  <div class="form-group col-auto">
+						{{ show_submit(loginForm.submit) }}
+					  </div>
+					</div>
+				  </form>
+				</tr>
+		  </tbody>
+		</table>
+	  </p>
 	</div>
-
-</div>
-
-<div class="col-md-auto d-none d-md-block thead-dark"></div>
-
+	</div>
+	</div>
   </div>
-
 </div>
+</body>
 {% endblock %}

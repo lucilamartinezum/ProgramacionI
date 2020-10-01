@@ -4,4 +4,7 @@ python-dotenv
 requests
 flask_wtf
 email_validator
+PyJWT
+flask-restful
+flask-login
 

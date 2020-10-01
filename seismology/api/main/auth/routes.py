@@ -14,7 +14,7 @@ def login():
     if user.validate_pass(request.get_json().get('password')):
         access_token = create_access_token(identity = user)
         data = '{"id":"'+str(user.id)+'", "email":"'+str(user.email)+'", "access_token":"'+access_token+'"}'
-        return  data, 200
+        return data, 200
     else:
         return 'Incorrect password', 204
 @auth.route('/register', methods = ['POST'])
@@ -38,8 +38,8 @@ def register():
         return user.to_json(), 201
 
 
-@auth.route('/checksensors', methods = ['GET'])
-@admin_required
+#@auth.route('/checksensors', methods = ['GET'])
+#@admin_required
 def checkStatus():
     sensors = db.session.query(SensorModel).filter(SensorModel.active == True).filter(SensorModel.status == False).all()
     if sensors:

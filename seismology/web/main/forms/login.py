@@ -1,6 +1,6 @@
 # - *- coding: utf- 8 - *-
 from flask_wtf import FlaskForm #Importa funciones de formulario
-from wtforms import PasswordField, SubmitField, StringField, SelectField #Importa campos
+from wtforms import PasswordField, SubmitField #Importa campos
 from wtforms.fields.html5 import EmailField, DateTimeField #Importa campos HTML
 from wtforms import validators #Importa validaciones
 
@@ -8,8 +8,8 @@ class LoginForm(FlaskForm):
 
     email = EmailField('E-mail',
     [
-        validators.Required(message = "E-mail is require"),
-        validators.Email( message ='Formad not valid'),
+        validators.Required(message = "E-mail is required"),
+        validators.Email( message ='Format not valid'),
     ])
 
     #Definición de campo de contraseña
@@ -17,4 +17,4 @@ class LoginForm(FlaskForm):
         validators.Required(),
     ])
     #Definición de campo submit
-    submit = SubmitField("Send")
+    submit = SubmitField("Login")

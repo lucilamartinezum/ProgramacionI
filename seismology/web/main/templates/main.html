@@ -45,11 +45,12 @@
         <div class="navbar-nav text-light ml-auto">
           <div class="nav text-light">
             <div class="dropdown-menu" aria-labelledby="dropdownMenuBoton">
+              <a href="{{ url_for('login.login') }}" class="dropdown-item">Log in</a>
               <a href="{{url_for('unverified_seism.index')}}" class="dropdown-item">Unverified Seisms</a>
               <a href="{{url_for('verified_seism.index')}}" class="dropdown-item">Verified Seisms</a>
               <a href="{{url_for('sensor.index')}}" class="dropdown-item">Sensors</a>
               <a href="{{url_for('user.index')}}" class="dropdown-item">Users</a>
-              <a href="#" class="dropdown-item">Log Out</a>
+              <a href="{{ url_for('login.logout') }}" class="dropdown-item">Log Out</a>
             </div>
           </div>
           <a class="nav" href="{{url_for('main.index')}}"><i class="fas fa-home fa-2x fa-lg"></i></a>

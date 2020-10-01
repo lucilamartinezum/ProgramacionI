@@ -9,6 +9,14 @@
     {% endif %}
 {% endmacro %}
 
+{% macro show_checkbox(field) %}
+    <div class="checkbox">
+        <label>
+            {{ field(type='checkbox', **kwargs) }} {{ field.label }}
+        </label>
+    </div>
+{% endmacro %}
+
 <!-- Macro que se encarga de mostrar los campos del formulario -->
 {% macro show_field(field) %}
     {{ field.label }} <!-- Mostrar etiqueta -->
@@ -19,4 +27,10 @@
 <!-- Macro que se encarga de mostrar los campos tipo submit formulario -->
 {% macro show_submit(field) %}
     {{ field(**kwargs) | safe }} <!-- Mostrar campo -->
+{% endmacro %}
+
+<!-- Macro que se encarga de mostrar los campos del Login -->
+{% macro show_placeholder(field) %}
+    {{ field(placeholder=field.label.text, **kwargs) | safe }} <!-- Mostrar campo -->
+    {{ show_error(field) }} <!-- Llamar a macro que muestra el error -->
 {% endmacro %}
