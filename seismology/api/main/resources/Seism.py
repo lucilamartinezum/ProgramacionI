@@ -9,7 +9,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from main.auth.decorators import admin_required
 
 class Unverifiedseism(Resource):
-    #@jwt_required
+    @jwt_required
     # obtener recurso
     def get(self, id):
         seism = db.session.query(SeismModel).get_or_404(id)
@@ -17,7 +17,7 @@ class Unverifiedseism(Resource):
             return seism.to_json()
         else:
             return 'Denied Access', 403
-    #@admin_required
+    @jwt_required#@admin_required
     # eliminar recurso
     def delete(self, id):
         seism = db.session.query(SeismModel).get_or_404(id)
@@ -27,7 +27,8 @@ class Unverifiedseism(Resource):
             return 'Unverifield seism was delete succesfully', 204
         else:
             return 'Denied Access', 403
-    #@admin_required
+
+    @jwt_required
     # modificar recurso
     def put(self, id):
         seism = db.session.query(SeismModel).get_or_404(id)
@@ -42,7 +43,7 @@ class Unverifiedseism(Resource):
 
 
 class Unverifiedseisms(Resource):
-    #@jwt_required
+    @jwt_required
     # obtener lista de recursos
     def get(self):
         page = 1
@@ -75,7 +76,7 @@ class Unverifiedseisms(Resource):
 
         seisms = seisms.paginate(page, per_page, True, max_per_page)
         return jsonify({'Unverified-Seisms': [seism.to_json() for seism in seisms.items]})
-    #@admin_required
+    @admin_required
     def post(self):
         sensors = db.session.query(SensorModel).all()
         sensorsId = []

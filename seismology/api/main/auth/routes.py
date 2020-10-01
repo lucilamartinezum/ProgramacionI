@@ -38,8 +38,8 @@ def register():
         return user.to_json(), 201
 
 
-#@auth.route('/checksensors', methods = ['GET'])
-#@admin_required
+@auth.route('/checksensors', methods = ['GET'])
+@admin_required
 def checkStatus():
     sensors = db.session.query(SensorModel).filter(SensorModel.active == True).filter(SensorModel.status == False).all()
     if sensors:

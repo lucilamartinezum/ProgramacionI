@@ -3,7 +3,7 @@ from flask import Flask
 from dotenv import load_dotenv
 from flask_breadcrumbs import Breadcrumbs
 from flask_wtf import CSRFProtect #importar para proteccion CSRF
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
 import os
 
 login_manager = LoginManager()

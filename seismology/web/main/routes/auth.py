@@ -27,7 +27,7 @@ def load_user(request):
             try:
                 user = User(user_data["id"], user_data["email"], user_data["admin"])
                 return user
-            except KeyError as e:
+            except KeyError:
                 return redirect(url_for('login.index'))
 
         except jwt.exceptions.InvalidTokenError:
@@ -49,7 +49,7 @@ def unauthorized_callback():
 def admin_required(fn):
     @wraps(fn)
     def wrapper(*args, **kws):
-        if not current_user.role == "admin":
+        if not current_user.admin:
             flash('Access restricted to administrators.','warning')
             return redirect(url_for('main.index'))
         return fn(*args, **kws)

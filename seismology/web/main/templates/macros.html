@@ -8,9 +8,13 @@
     <td>{{unverified_seism.longitude}}</td>
     <td>
       <div class="btn-group" role="group">
-        <a type="button" class="btn btn-sm" data-toggle="tooltip" title="view" href="{{ url_for('unverified_seism.view',id=unverified_seism.id) }}"><i class="fas fa-eye"></i></a>
-        <a type="button" class="btn btn-sm" data-toggle="tooltip" title="delete" href="{{ url_for('unverified_seism.delete',id=unverified_seism.id) }}"><i class="fas fa-trash"></i></a>
-        <a type="button" class="btn btn-sm" data-toggle="tooltip" title="edit" href="{{ url_for('unverified_seism.edit',id=unverified_seism.id) }}"><i class="fas fa-edit"></i></a>
+            {% if current_user.is_authenticated %}
+            <a type="button" class="btn btn-sm" data-toggle="tooltip" title="view" href="{{ url_for('unverified_seism.view',id=unverified_seism.id) }}"><i class="fas fa-eye"></i></a>
+          {% endif %}
+          {% if not current_user.admin %}
+            <a type="button" class="btn btn-sm" data-toggle="tooltip" title="delete" href="{{ url_for('unverified_seism.delete',id=unverified_seism.id) }}"><i class="fas fa-trash"></i></a>
+            <a type="button" class="btn btn-sm" data-toggle="tooltip" title="edit" href="{{ url_for('unverified_seism.edit',id=unverified_seism.id) }}"><i class="fas fa-edit"></i></a>
+          {% endif %}
       </div>
     </td>
   </tr>
@@ -39,9 +43,8 @@
     <td>{{verified_seism.longitude}}</td>
     <td>
       <div class="btn-group" role="group">
-        <a type="button" class="btn btn-sm" data-toggle="tooltip" title="view" href="{{ url_for('verified_seism.view',id=verified_seism.id) }}"><i class="fas fa-eye"></i></a>
-        <a type="button" class="btn btn-sm" data-toggle="tooltip" title="delete" href="{{ url_for('verified_seism.delete',id=verified_seism.id) }}"><i class="fas fa-trash"></i></a>
-        <a type="button" class="btn btn-sm" data-toggle="tooltip" title="download" href="#"><i class="fas fa-download"></i></a>
+          <a type="button" class="btn btn-sm" data-toggle="tooltip" title="view" href="{{ url_for('verified_seism.view',id=verified_seism.id) }}"><i class="fas fa-eye"></i></a>
+          <a type="button" class="btn btn-sm" data-toggle="tooltip" title="download" href="#"><i class="fas fa-download"></i></a>
       </div>
     </td>
   </tr>

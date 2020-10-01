@@ -35,12 +35,8 @@
 
     <div class="row">
         <div class="col-md-12 pagination justify-content-center">
-            <button type="button" class="btn btn-sm " data-toggle="tooltip">
-                <i class="fas fa-trash"></i>DELETE
-            </button>
-            <button type="button" class="btn btn-sm" data-toggle="tooltip">
-                <i class="fas fa-edit"></i>EDIT
-            </button>
+            <a type="button" class="btn btn-sm" data-toggle="tooltip" href="{{ url_for('sensor.delete',id=sensor.id) }}"><i class="fas fa-trash"></i>DELETE</a>
+            <a type="button" class="btn btn-sm" data-toggle="tooltip" href="{{ url_for('sensor.edit',id=sensor.id) }}"><i class="fas fa-edit"></i>SENSOR</a>
         </div>
     </div>
 </main>
