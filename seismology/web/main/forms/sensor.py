@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import BooleanField, IntegerField, SelectField, StringField, SubmitField
+from wtforms import BooleanField, IntegerField, SelectField, StringField, SubmitField, HiddenField
 from wtforms import validators
 
 
@@ -61,3 +61,34 @@ class SensorEdit(FlaskForm):
     )
 
     submit = SubmitField(label="Send")
+
+class SensorFilter(FlaskForm):
+    name = StringField(
+        label="Name",
+        validators=[validators.optional()],
+    )
+    status = BooleanField(
+        label="Status: Working?",
+        validators=[validators.optional()],
+    )
+    active = BooleanField(
+        label="Active",
+        validators=[validators.optional()],
+    )
+    user_email = StringField(
+        label="User email",
+        validators=[validators.optional()]
+    )
+
+    sort_by = HiddenField()
+
+
+    elem_per_page = IntegerField(
+        validators=[validators.optional()]
+    )
+
+    submit = SubmitField(
+        label="Filter",
+    )
+
+

@@ -10,6 +10,7 @@ verified_seism = Blueprint("verified_seism", __name__, url_prefix="/verified-sei
 def index():
     req = sendRequest(method="get", url="/verified-seisms", )
     verified_seisms = json.loads(req.text)['Verified-Seism']
+    data = {}
     title = "Verified Seisms List"
     return render_template("verified-seisms.html", title=title, verified_seisms=verified_seisms)
 

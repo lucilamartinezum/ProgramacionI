@@ -1,8 +1,8 @@
-from flask import Blueprint, render_template, current_app, redirect, url_for, flash
+from flask import Blueprint, render_template, current_app, redirect, url_for, flash, request
 from flask_breadcrumbs import register_breadcrumb
 import requests, json
 
-from ..forms.sensor import SensorForm, SensorEdit
+from ..forms.sensor import SensorForm, SensorEdit, SensorFilter
 from ..utilities.functions import sendRequest
 from .auth import admin_required
 from flask_login import login_required
@@ -14,10 +14,50 @@ sensor = Blueprint("sensor", __name__, url_prefix="/sensor")
 @admin_required
 @register_breadcrumb(sensor,".",'Sensors')
 def index():
+    # Eliminar la protección csrf para el formulario de filtro
+    # Cargar parametros de la url en el formulario
+    filter = SensorFilter(request.args, meta={"csrf": False})
     req = sendRequest(method="get", url="/sensors", auth=True)
+    #obtenet usuarios
     sensors = json.loads(req.text)['Sensors']
-    title = "Sensors"
-    return render_template("sensors.html",title=title,sensors=sensors)
+    # Cargar usuarios en el formulario
+    filter.user_email.choices = [(int(user["id"]), user["email"]) for user in json.loads(req.text)["Users"]]
+    filter.user_email.choices.insert(0, [0, "All"])
+    data = {}
+    # Aplicado de filtros
+    # Validar formulario de filtro
+    if filter.validate():
+        if filter.user_email.data != None and filter.user_email.data != 0:
+            data["user_email"] = filter.user_email.data
+        if filter.name.data != None:
+            data["name"] = filter.name.data
+        if filter.status.data:
+            data["status"] = filter.status.data
+        if filter.active.data:
+            data["active"] = filter.active.data
+
+    # Ordenamiento
+    if "sort_by" in request.args:
+        data["sort_by"] = request.args.get("sort_by", "")
+
+    # Numero de pagina
+    if "page" in request.args:
+        data["page"] = request.args.get("page", "")
+
+    # Obtener datos de la api
+    req = sendRequest(method="get", url="/sensors", data=json.dumps(data), auth=True)
+
+    if req.status_code == 200:
+        sensors = json.loads(req.text)["Sensors"]
+        pagination = {}
+        pagination["total"] = json.loads(req.text)["total"]
+        pagination["pages"] = json.loads(req.text)["pages"]
+        pagination["current_page"] = json.loads(req.text)["page"]
+        pagination["per_page"] = json.loads(req.text)["per_page"]
+        title = "Sensors"
+        return render_template("sensors.html", title=title, sensors=sensors, filter=filter, pagination=pagination,)
+    else:
+        redirect(url_for("sensor.index"))
 
 @sensor.route("/view/<int:id>")
 @login_required

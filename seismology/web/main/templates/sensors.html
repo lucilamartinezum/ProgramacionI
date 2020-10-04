@@ -9,24 +9,44 @@
 <!-- Contenido -->
 
   <!-- Filtro -->
-  <form class="form-inline my-2 my-lg-0 justify-content-center">
+
   <h1>Sensors</h1>
-    <a href="{{ url_for('sensor.create') }}" role="button" class="btn btn-outline-dark my-2 my-sm-1 center" type="submit"><i class="fas fa-save"></i> Add sensor </i></a>
-    <select class="custom-select">
-      <option selected>Select one option for filter</option>
-      <option value="1">Name</option>
-      <option value="2">Status</option>
-      <option value="3">Active</option>
-      <option value="4">User Associated</option>
-    </select>
-    <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Filter</button>
-    <i class="fas fa-sort-alpha-down fa-2x fa-lg"></i>
-      <select class="custom-select">
-        <option selected>Sort by</option>
-        <option value="1">A-Z</option>
-        <option value="2">Z-A</option>
-      </select>
-  </form>
+    <div class="row">
+        <div class="col-md-12">
+          <form method="GET" action="{{ url_for('sensor.index') }}" >
+            <div class="form-row">
+              <div class="form-group col-md-3">
+                  {{ show_field(filter.name, class='form-control' )}}
+              </div>
+              <div class="form-group col-md-1">
+                  {{ show_field(filter.status , class='form-control')}}
+              </div>
+              <div class="form-group col-md-1">
+                  {{ show_field(filter.active , class='form-control')}}
+              </div>
+              <div class="form-group col-md-3">
+                  {{ show_field(filter.user_email , class='form-control')}}
+              </div>
+              <div class="form-group col-md-2" style="margin-top:30px">
+                <a class="btn btn-success" href="{{ url_for('sensor.index',
+                     sort_by = request.args.sort_by,
+                     name = request.args.name,
+                     user_email =request.args.user_email,
+                     active = request.args.active,
+                     status = request.args.status ) }}">Download</a>
+                {{ show_submit(filter.submit , class='btn btn-success')}}
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+  <div class="row">
+      <!--Columna -->
+    <div class="col-md-6 ">
+      <!-- Mostrar cantidad total de elementos para los filtros aplicados -->
+      Total: {{pagination.total}}
+    </div>
+  </div>
 
   </br>
 
