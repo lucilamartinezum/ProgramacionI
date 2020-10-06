@@ -7,6 +7,7 @@ import  {Sensor} from "./sensor.model"
   styleUrls: ['./sensor.component.scss']
 })
 export class SensorComponent implements OnInit {
+  selectedSensor: Sensor;
   sensors: Sensor[]=[
     {
       name: 'Pablo',
@@ -44,5 +45,7 @@ export class SensorComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  onSelect(sensor:Sensor): void{
+    this.selectedSensor=sensor;
+  }
 }
