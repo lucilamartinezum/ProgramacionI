@@ -68,7 +68,7 @@ class SensorFilter(FlaskForm):
         validators=[validators.optional()],
     )
     status = BooleanField(
-        label="Status: Working?",
+        label="Working?",
         validators=[validators.optional()],
     )
     active = BooleanField(
@@ -78,6 +78,12 @@ class SensorFilter(FlaskForm):
     user_email = StringField(
         label="User email",
         validators=[validators.optional()]
+    )
+
+    userId = SelectField(
+        "Users",
+        [validators.optional()],
+        coerce=int,
     )
 
     sort_by = HiddenField()

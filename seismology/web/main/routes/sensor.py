@@ -17,18 +17,24 @@ def index():
     # Eliminar la protección csrf para el formulario de filtro
     # Cargar parametros de la url en el formulario
     filter = SensorFilter(request.args, meta={"csrf": False})
-    req = sendRequest(method="get", url="/sensors", auth=True)
+    #req = sendRequest(method="get", url="/sensors", auth=True)
+    req = sendRequest(method="get", url="/users", auth=True)
+    print("-------------------------------->", req)
     #obtenet usuarios
-    sensors = json.loads(req.text)['Sensors']
+    #sensors = json.loads(req.text)["Sensors"]
     # Cargar usuarios en el formulario
-    filter.user_email.choices = [(int(user["id"]), user["email"]) for user in json.loads(req.text)["Users"]]
-    filter.user_email.choices.insert(0, [0, "All"])
+    #filter.user_email.choices = [(int(user["id"]), user["email"]) for user in json.loads(req.text)["Users"]]
+    #filter.user_email.choices.insert(0, [0, "All"])
+    filter.userId.choices = [
+        (int(user["id"]), user["email"]) for user in json.loads(req.text)["Users"]
+    ]
+    filter.userId.choices.insert(0, [0, "All"])
     data = {}
     # Aplicado de filtros
     # Validar formulario de filtro
     if filter.validate():
-        if filter.user_email.data != None and filter.user_email.data != 0:
-            data["user_email"] = filter.user_email.data
+        if filter.userId.data != None and filter.userId.data != 0:
+            data["userId"] = filter.userId.data
         if filter.name.data != None:
             data["name"] = filter.name.data
         if filter.status.data:
