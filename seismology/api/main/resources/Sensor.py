@@ -81,9 +81,9 @@ class Sensors(Resource):
 
             # PAGINACION
             if key == "page":
-                page = value
+                page = int(value)
             if key == "per_page":
-                per_page = value
+                per_page = int(value)
 
         sensors = sensors.paginate(page, per_page, True, max_per_page)
         print("----------------------------------->", sensors)

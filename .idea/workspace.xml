@@ -2,47 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="918a2be8-cca0-47d6-ae23-e53fd2402fe9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/seismology/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seismology/api/main/templates/mail/sensor.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seismology/web/main/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seismology/web/main/forms/login.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seismology/web/main/forms/sensor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seismology/web/main/forms/unverified-seism-form.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seismology/web/main/forms/user_form.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seismology/web/main/routes/login.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seismology/web/main/routes/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seismology/web/main/routes/sensor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seismology/web/main/routes/user.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seismology/web/main/routes/verified_seism.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seismology/web/main/templates/add-sensor.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seismology/web/main/templates/admin-home.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seismology/web/main/templates/edit-sensor.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seismology/web/main/templates/edit-unverifiedseism.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seismology/web/main/templates/form_macros.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seismology/web/main/templates/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seismology/web/main/templates/seismologist-home.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seismology/web/main/templates/sensor-view.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seismology/web/main/templates/sensors.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seismology/web/main/templates/user-edit.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seismology/web/main/templates/user_form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seismology/web/main/templates/users.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seismology/web/main/utilities/functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/seismology/api/.env-example" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/.env-example" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/seismology/api/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/seismology/api/main/auth/decorators.py" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/main/auth/decorators.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/seismology/api/main/auth/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/main/auth/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/seismology/api/main/mail/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/main/mail/functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/seismology/api/main/resources/Seism.py" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/main/resources/Seism.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/api/main/resources/Sensor.py" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/main/resources/Sensor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/seismology/api/main/resources/User.py" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/main/resources/User.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/seismology/api/main/templates/mail/register.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/api/seismology.db" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/seismology.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/seismology/web/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/seismology/web/boot.sh" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/boot.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/seismology/web/install.sh" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/install.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/seismology/web/pyvenv.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/pyvenv.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/seismology/web/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/seismology/web/web.py" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seismology/web/frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/frontend/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seismology/web/frontend/src/app/sensor/sensor.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/frontend/src/app/sensor/sensor.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seismology/web/frontend/src/app/sensor/sensor.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/frontend/src/app/sensor/sensor.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seismology/web/main/static/css/detailedverifiedseism.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/seismology/web/main/templates/sensors.html" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/main/templates/sensors.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
