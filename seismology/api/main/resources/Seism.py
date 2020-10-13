@@ -54,6 +54,7 @@ class Unverifiedseisms(Resource):
         filters = request.get_json().items()
         seisms = db.session.query(SeismModel).filter(SeismModel.verified == False)
 
+
         for key, value in filters:
             if key == 'sensorId':
                 seisms = seisms.join(SeismModel.sensor).filter(SensorModel.id == value)
@@ -86,7 +87,7 @@ class Unverifiedseisms(Resource):
             if key == "per_page":
                 per_page = int(value)
 
-        seisms = seisms.paginate(page, per_page, True, max_per_page, raise_error)
+        seisms = seisms.paginate(page, per_page, True, max_per_page)
         return jsonify({'Unverified-Seisms': [seism.to_json() for seism in seisms.items],
                         'total': seisms.total,
                         'pages': seisms.pages,
@@ -131,7 +132,7 @@ class Verifiedseisms(Resource):
     # obtener lista de recursos
     def get(self):
         page = 1
-        per_page = 25
+        per_page = 10
         max_per_page = 10000
 
         filters = request.get_json().items()
@@ -141,21 +142,23 @@ class Verifiedseisms(Resource):
         for key, value in filters:
             # Filtros
             if key == "from_date":
-                value = datetime.strptime(value, "%Y-%m-%d %H:%M:%S")
+                value = datetime.datetime.strptime(value, "%Y-%m-%d %H:%M")
                 seisms = seisms.filter(SeismModel.datetime >= value)
             if key == "to_date":
-                value = datetime.strptime(value, "%Y-%m-%d %H:%M:%S")
+                value = datetime.datetime.strptime(value, "%Y-%m-%d %H:%M")
                 seisms = seisms.filter(SeismModel.datetime <= value)
-            if key == "mag.min":
+            if key == "magnitude_min":
                 seisms = seisms.filter(SeismModel.magnitude >= value)
-            if key == "mag.max":
+            if key == "magnitude_max":
                 seisms = seisms.filter(SeismModel.magnitude <= value)
-            if key == "depth.min":
+            if key == "depth_min":
                 seisms = seisms.filter(SeismModel.depth >= value)
-            if key == "depth.max":
+            if key == "depth_max":
                 seisms = seisms.filter(SeismModel.depth <= value)
-            if key == "sensor.name":
+            if key == "sensor_name":
                 seisms = seisms.join(SeismModel.sensor).filter(SensorModel.name.like("%" + str(value) + "%"))
+            if key == "sensorId":
+                seisms = seisms.join(SeismModel.sensor).filter(SensorModel.id == value)
 
             # ORDER
             if key == "sort_by":
@@ -183,7 +186,7 @@ class Verifiedseisms(Resource):
                 per_page = int(value)
 
         seisms = seisms.paginate(page, per_page, True, max_per_page)  # True para no mostrar error
-        return jsonify({'Verified-Seism': [seism.to_json() for seism in seisms.items],
+        return jsonify({'Verified-Seisms': [seism.to_json() for seism in seisms.items],
                         'total': seisms.total,
                         'pages': seisms.pages,
                         'page': page,

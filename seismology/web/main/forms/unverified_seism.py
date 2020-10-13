@@ -24,7 +24,7 @@ class UnverifiedSeismEdit(FlaskForm):
 
 class UnverifiedSeismsFilter(FlaskForm):
 
-    sensor_id = SelectField(
+    sensorId = SelectField(
         label="Sensor name",
         validators=[validators.optional()],
         coerce=int)

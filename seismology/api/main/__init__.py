@@ -46,6 +46,8 @@ def create_app():
 
     api.add_resource(resources.UsersResource, '/users')
     api.add_resource(resources.UserResource, '/user/<id>')
+
+    api.add_resource(resources.SensorsInfoResource, '/sensors-info')
     api.init_app(app)
 
     from main.auth import routes

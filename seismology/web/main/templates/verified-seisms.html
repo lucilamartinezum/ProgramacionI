@@ -4,30 +4,50 @@
 <!-- Importar el archivo de macros -->
 {% import 'macros.html' as macros %}
 
+{% from "form_macros.html" import show_field, show_submit, show_placeholder %}
+
 <!-- Define el contenido -->
 {% block content %}
 <!-- Contenido -->
-<form class="form-inline my-2 my-lg-0 justify-content-center">
-    <i class="fas fa-filter fa-2x fa-lg"></i>
-      <select class="custom-select">
-        <option selected>Select one option for filter</option>
-        <option value="1">Date Time</option>
-        <option value="2">Depth</option>
-        <option value="3">Magnitude</option>
-        <option value="4">Latitude</option>
-        <option value="5">Longitude</option>
-        <option value="6">Sensors</option>
-      </select>
-    <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Filter</button>
-     Date Time:<input class="form-control mr-sm-1" type="datetime" placeholder="Since" aria-label="Since">
-    <input class="form-control mr-sm-1" type="datetime" placeholder="Until" aria-label="Until">
-    <i class="fas fa-sort-alpha-down fa-2x fa-lg"></i>
-      <select class="custom-select">
-        <option selected>Select one option for filter</option>
-        <option value="1">A-Z</option>
-        <option value="2">Z-A</option>
-      </select>
-  </form>
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-auto d-none d-md-block"></div>
+      <div class="col-md-auto">
+          <form method="GET" action="{{ url_for('verified_seism.index') }}" >
+            <div class="form-row">
+              <i class="fas fa-filter fa-2x fa-lg"></i>
+              <div class="form-group col-md-auto">
+                    {{ show_field(filter.from_datetime, class='form-control' )}}
+              </div>
+              <div class="form-group col-md-auto">
+                    {{ show_field(filter.to_datetime, class='form-control' )}}
+              </div>
+              <div class="form-group col-md-auto">
+                    {{ show_field(filter.magnitude_min, class='form-control' )}}
+              </div>
+              <div class="form-group col-md-auto">
+                    {{ show_field(filter.magnitude_max, class='form-control' )}}
+              </div>
+              <div class="form-group col-md-auto">
+                    {{ show_field(filter.depth_min, class='form-control' )}}
+              </div>
+              <div class="form-group col-md-auto">
+                    {{ show_field(filter.depth_max, class='form-control' )}}
+              <div class="form-group col-md-auto">
+                  {{ show_field(filter.sensorId , class='form-control')}}
+              </div>
+              <div class="form-group col-md-auto">
+                  {{show_submit(filter.submit, class='btn btn-success')}}
+              </div>
+            </div>
+          </form>
+
+
+
+        </div>
+    </div>
+</div>
 
   </br>
 <main>
@@ -36,18 +56,65 @@
       <div class="col-md-2 d-none d-md-block"></div>
       <div class="col-md-8">
         <h1>Verified Seisms</h1>
-
+        Total: {{pagination.total}}
         <!-- Tabla -->
         <div class="table-responsive text-center">
           <table class="table table-striped table-bordered">
             <thead>
               <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Date Time</th>
-                <th scope="col">Depth</th>
-                <th scope="col">Magnitude</th>
-                <th scope="col">Latitude</th>
-                <th scope="col">Longitude</th>
+              <th scope="col">
+                {% if request.args.sort_by == "name.desc"  %}
+                <a class="text-white" href="{{ url_for('verified_seism.index',
+                sort_by = 'name.asc',
+                name = request.args.name,
+                status = request.args.status,
+                active = request.args.active,
+                userId = request.args.userId )}}">Name</a>
+                {% else %}
+                <a class="text-white" href="{{ url_for('verified_seism.index',
+                sort_by = 'name.desc',
+                name = request.args.name,
+                status = request.args.status,
+                active = request.args.active,
+                userId = request.args.userId )}}">Name</a>
+                {% endif %}
+              </th>
+              <th scope="col">
+                {% if request.args.sort_by == "status.desc" %}
+                <a class="text-white" href="{{ url_for('verified_seism.index',
+                sort_by = 'status.asc',
+                name = request.args.name,
+                status = request.args.status,
+                active = request.args.active,
+                userId = request.args.userId )}}">Status</a>
+                {% else %}
+                <a class="text-white" href="{{ url_for('verified_seism.index',
+                sort_by = 'status.desc',
+                name = request.args.name,
+                status = request.args.status,
+                active = request.args.active,
+                userId = request.args.userId )}}">Status</a>
+                {% endif %}
+              </th>
+              <th scope="col">
+                {% if request.args.sort_by == "status.desc" %}
+                <a class="text-white" href="{{ url_for('verified_seism.index',
+                sort_by = 'active.asc',
+                name = request.args.name,
+                status = request.args.status,
+                active = request.args.active,
+                userId = request.args.userId )}}">Active</a>
+                {% else %}
+                <a class="text-white" href="{{ url_for('verified_seism.index',
+                sort_by = 'active.desc',
+                name = request.args.name,
+                status = request.args.status,
+                active = request.args.active,
+                userId = request.args.userId )}}">Active</a>
+                {% endif %}
+              </th>
+                <th scope="col">Sensor Name</th>
                 <th scope="col">Actions</th>
               </tr>
             </thead>
@@ -66,24 +133,84 @@
     </div>
 
     <!-- Pagination -->
-    <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-center">
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </div>
+  <nav aria-label="Pagination">
+    <ul class="pagination justify-content-center">
+      <!-- Boton de página anterior, desactivar si se está en la primera página -->
+      {% if pagination.current_page != 1 %}
+      <li class="page-item">
+        <a class="page-link" href="{{ url_for('verified_seism.index',
+        page = (pagination.current_page-1),
+        from_datetime = request.args.from_datetime,
+        to_datetime = request.args.to_datetime,
+        datetime = request.args.datetime,
+        magnitude_min = request.args.magnitude_min,
+        magnitude_max = request.args.magnitude_max,
+        depth_min = request.args.depth_min,
+        depth_max = request.args.depth_max,
+        magnitude = request.args.magnitude,
+        depth = request.args.depth,
+        sensorId = request.args.sensorId )}}" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a href="#" class="page-link" tabindex="-1" aria-disabled="true" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span></a>
+      </li>
+      {% endif %}
+      <!-- Recorrer cantidad de páginas para el filtrado actual -->
+      {% for n in range(1, pagination.pages+1) %}
+      <!-- Boton para cada página, desactivar para página actual -->
+      {% if n != pagination.current_page %}
+      <li class="page-item">
+        <a class="page-link" href="{{ url_for('verified_seism.index',
+        page = n,
+        datetime = request.args.datetime,
+        from_datetime = request.args.from_datetime,
+        to_datetime = request.args.to_datetime,
+        magnitude = request.args.magnitude,
+        magnitude_min = request.args.magnitude_min,
+        magnitude_max = request.args.magnitude_max,
+        depth_min = request.args.depth_min,
+        depth_max = request.args.depth_max,
+        depth = request.args.depth,
+        sensorId = request.args.sensorId )}}">{{n}}</a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="+1" aria-disabled="true">{{n}}</a>
+      </li>
+      {% endif %}
+      {% endfor %}
+      <!-- Boton de página siguiente, desactivar si se está en la última página -->
+      {% if pagination.current_page != pagination.pages %}
+      <li class="page-item">
+        <a class="page-link" href="{{ url_for('verified_seism.index',
+        page = (pagination.current_page+1),
+        datetime = request.args.datetime,
+        from_datetime = request.args.from_datetime,
+        to_datetime = request.args.to_datetime,
+        magnitude = request.args.magnitude,
+        magnitude_min = request.args.magnitude_min,
+        magnitude_max = request.args.magnitude_max,
+        depth_min = request.args.depth_min,
+        depth_max = request.args.depth_max,
+        depth = request.args.depth,
+        sensorId = request.args.sensorId )}}" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a href="#" class="page-link" tabindex="-1" aria-disabled="true" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span></a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+</div>
+<br>
 </main>
 <!-- Fin Contenido -->
 {% endblock %}

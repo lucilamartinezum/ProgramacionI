@@ -45,3 +45,11 @@ class Sensor(db.Model):
         active = sensor_json.get('active')
         userId = sensor_json.get('userId')
         return Sensor(id = id, name = name, ip = ip, port = port, status = status, active = active, userId = userId)
+
+    def to_json_public(self):
+        sensor_json = {
+            'id': self.id,
+            'name': str(self.name),
+        }
+
+        return sensor_json
