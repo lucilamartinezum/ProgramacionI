@@ -78,6 +78,10 @@ class Sensors(Resource):
                     sensors = sensors.order_by(SensorModel.status.desc())
                 if value == "status.asc":
                     sensors = sensors.order_by(SensorModel.status.asc())
+                if value == "user.email.desc":
+                    sensors = sensors.join(SensorModel.user).order_by(UserModel.email.desc())
+                if value == "user.email.asc":
+                    sensors = sensors.join(SensorModel.user).order_by(UserModel.email.asc())
 
             # PAGINACION
             if key == "page":

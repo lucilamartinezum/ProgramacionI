@@ -2,35 +2,37 @@
 {% block content %}
   <!-- Contenido -->
 <main>
-    <div class="cont">
-        <div class="row">
-            <div class="col-sm-12 col-md-6">
-                <h2>Detailed Unverified Seism {{unverified_seism.id}}</h2>
-                <table>
-                    <tr>
-                        <th scope="col " class = "p-2">DATE TIME:</th> <th scope="col"> <span class="border border-dark shadow p-1 mb-5 bg-white ">{{unverified_seism.datetime}} </span></th>
-                    <tr>
-                        <th scope="col" class = "p-2">MAGNITUDE:</th> <th scope="col"> <span class="border border-dark shadow p-1 mb-5 bg-white">{{unverified_seism.magnitude}}</span></th>
-                    </tr>
-                    <tr>
-                        <th scope="col" class = "p-2">DEPHT:</th> <th scope="col"> <span class="border border-dark shadow p-1 mb-5 bg-white">{{unverified_seism.depth}}</span></th>
-                    </tr>
-                    <tr>
-                        <th scope="col" class = "p-2">LATITUDE:</th> <th scope="col"> <span class="border border-dark shadow p-1 mb-5 bg-white">{{unverified_seism.latitude}}</span></th>
-                    </tr>
-                    <tr>
-                        <th scope="col" class = "p-2">LONGITUDE:</th> <th scope="col"> <span class="border border-dark shadow p-1 mb-5 bg-white">{{unverified_seism.longitude}}</span></th>
-                    </tr>
-                    <tr>
-                        <th scope="col" class = "p-2">SENSOR:</th> <th scope="col"> <span class="border border-dark shadow p-1 mb-5 bg-white">{{unverified_seism.sensor.id}}</span></th>
-                    </tr>
-                </table>
-            </div>
+    <div class="container">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <h2>Detailed Unverified Seism {{unverified_seism.id}}</h2>
+                    <table>
+                        <tr>
+                            <th scope="col " class = "p-2">DATE TIME:</th> <th scope="col"> <span class="border border-dark shadow p-1 mb-5 bg-white ">{{unverified_seism.datetime}} </span></th>
+                        <tr>
+                            <th scope="col" class = "p-2">MAGNITUDE:</th> <th scope="col"> <span class="border border-dark shadow p-1 mb-5 bg-white">{{unverified_seism.magnitude}}</span></th>
+                        </tr>
+                        <tr>
+                            <th scope="col" class = "p-2">DEPTH:</th> <th scope="col"> <span class="border border-dark shadow p-1 mb-5 bg-white">{{unverified_seism.depth}}</span></th>
+                        </tr>
+                        <tr>
+                            <th scope="col" class = "p-2">LATITUDE:</th> <th scope="col"> <span class="border border-dark shadow p-1 mb-5 bg-white">{{unverified_seism.latitude}}</span></th>
+                        </tr>
+                        <tr>
+                            <th scope="col" class = "p-2">LONGITUDE:</th> <th scope="col"> <span class="border border-dark shadow p-1 mb-5 bg-white">{{unverified_seism.longitude}}</span></th>
+                        </tr>
+                        <tr>
+                            <th scope="col" class = "p-2">SENSOR:</th> <th scope="col"> <span class="border border-dark shadow p-1 mb-5 bg-white">{{unverified_seism.sensor.id}}</span></th>
+                        </tr>
+                    </table>
+                </div>
 
-            <div class="col-md-5">
-                <div class="google-maps"> <iframe src="https://maps.google.com/maps?width=100%25&amp;height=100%25&amp;hl=en&amp;q={{ unverified_seism.latitude }},{{ unverified_seism.longitude }}&amp;t=k&amp;z=8&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
-                    width="300" height="300" frameborder="0" style="border:0;width: 100% !important;top: 20px;left: 0 "
-                    allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                <div class="col-md-5">
+                    <div class="google-maps"> <iframe src="https://maps.google.com/maps?width=100%25&amp;height=100%25&amp;hl=en&amp;q={{ unverified_seism.latitude }},{{ unverified_seism.longitude }}&amp;t=k&amp;z=8&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                        width="300" height="300" frameborder="0" style="border:0;width: 100% !important;top: 20px;left: 0 "
+                        allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                    </div>
                 </div>
             </div>
         </div>

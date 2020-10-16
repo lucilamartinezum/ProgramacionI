@@ -42,7 +42,7 @@ def load_user(request):
 def unauthorized_callback():
     flash('You must log in to continue.','warning')
     #Redireccionar a la página que contiene el formulario de login
-    return redirect(url_for('login.index'))
+    return redirect(url_for('main.index'))
 
 
 #Define la función de verificación de admin para las rutas

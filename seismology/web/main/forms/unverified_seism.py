@@ -29,15 +29,13 @@ class UnverifiedSeismsFilter(FlaskForm):
         validators=[validators.optional()],
         coerce=int)
 
-
     from_datetime = DateTimeField(
-        label="Since date",
+        label="Since date", format='%Y-%m-%dT%H:%M',
         validators=[validators.optional()]
     )
 
-
     to_datetime = DateTimeField(
-        label="Until date",
+        label="Until date", format='%Y-%m-%dT%H:%M',
         validators=[validators.optional()]
     )
 

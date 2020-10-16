@@ -21,18 +21,16 @@ def index():
     # Aplicado de filtros
     # Validar formulario de filtro
     if filter.validate():
+        if filter.sensorId.data != None and filter.sensorId.data != 0:
+            data["sensorId"] = filter.sensorId.data
         # Datetime
         if filter.from_datetime.data and filter.to_datetime.data:
             if filter.from_datetime.data == filter.to_datetime.data:
-                data["datetime"] = filter.to_datetime.data
+                data["datetime"] = filter.to_datetime.data.strftime('%Y-%m-%d %H:%M')
         if filter.from_datetime.data != None:
-            data["datetime"] = filter.from_datetime.data
+            data["from_date"] = filter.from_datetime.data.strftime('%Y-%m-%d %H:%M')
         if filter.to_datetime.data != None:
-            data["datetime"] = filter.to_datetime.data
-
-        # SensorName
-        if filter.sensorId.data != None and filter.sensorId.data != 0:
-            data["sensorId"] = filter.sensorId.data
+            data["to_date"] = filter.to_datetime.data.strftime('%Y-%m-%d %H:%M')
 
     # Ordenamiento
     if "sort_by" in request.args:
@@ -56,15 +54,12 @@ def index():
         pagination["total"] = json.loads(req.text)["total"]
         pagination["pages"] = json.loads(req.text)["pages"]
         pagination["current_page"] = json.loads(req.text)["page"]
-        title = "Verified Seisms List"
+        title = "Unverified Seisms List"
         return render_template("unverified-seisms.html", title=title, unverified_seisms=unverified_seisms, filter=filter,
                                pagination=pagination, )
     else:
         redirect(url_for("unverified_seism.index"))
-    #req = sendRequest(method="get", url="/unverified-seisms", auth=True)
-    #unverified_seisms = json.loads(req.text)["Unverified-Seisms"]
-    #title = "Unverified Seisms List"
-    #return render_template("unverified-seisms.html", title=title, unverified_seisms=unverified_seisms)
+
 
 @unverified_seism.route("/view/<int:id>")
 @login_required

@@ -59,8 +59,11 @@ class Unverifiedseisms(Resource):
             if key == 'sensorId':
                 seisms = seisms.join(SeismModel.sensor).filter(SensorModel.id == value)
             if key == "from_date":
+                value = datetime.datetime.strptime(value, "%Y-%m-%d %H:%M")
                 seisms = seisms.filter(SeismModel.datetime >= value)
+
             if key == "to_date":
+                value = datetime.datetime.strptime(value, "%Y-%m-%d %H:%M")
                 seisms = seisms.filter(SeismModel.datetime <= value)
 
             # ORDENAMIENTO

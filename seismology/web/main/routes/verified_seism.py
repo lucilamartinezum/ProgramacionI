@@ -18,8 +18,6 @@ def index():
     # Aplicado de filtros
     # Validar formulario de filtro
     if filter.validate():
-        print("--------------------------------------")# SensorName
-        print(filter.sensorId.data)
         if filter.sensorId.data != None and filter.sensorId.data != 0:
             data["sensorId"] = filter.sensorId.data
         # Datetime
@@ -55,17 +53,16 @@ def index():
     # Ordenamiento
     if "sort_by" in request.args:
         data["sort_by"] = request.args.get("sort_by", "")
-    print("*****************************")
+
     # Numero de pagina
     if "page" in request.args:
         data["page"] = request.args.get("page", "")
     else:
         if "page" in data:
             del data["page"]
-    print("----------------------------", data)
+
     # Obtener datos de la api para la tabla
     req = sendRequest(method="get", url="/verified-seisms", data=json.dumps(data))
-    print("++++++++++++++++++++++++++++")
     if req.status_code == 200:
         # Cargar sismos verificados
         verified_seisms = json.loads(req.text)["Verified-Seisms"]
@@ -74,12 +71,10 @@ def index():
         pagination["total"] = json.loads(req.text)["total"]
         pagination["pages"] = json.loads(req.text)["pages"]
         pagination["current_page"] = json.loads(req.text)["page"]
-        print("///////////////////////////////////////////")
         title = "Verified Seisms List"
         return render_template("verified-seisms.html", title=title, verified_seisms=verified_seisms, filter=filter, pagination=pagination,)
 
     else:
-        print("5555555555555555555555555")
         return redirect(url_for("verified_seism.index"))
 
 @verified_seism.route("/view/<int:id>")

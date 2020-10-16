@@ -1,11 +1,10 @@
 {% macro show_unverified_seism(unverified_seism) %}
 <tr>
     <th scope="row">{{unverified_seism.id}}</th>
-    <td>{{unverified_seism.datetime}}</td>
-    <td>{{unverified_seism.depth}}</td>
+    <td>{{unverified_seism.sensor.name}}</td>
     <td>{{unverified_seism.magnitude}}</td>
-    <td>{{unverified_seism.latitude}}</td>
-    <td>{{unverified_seism.longitude}}</td>
+    <td>{{unverified_seism.datetime}}</td>
+
     <td>
       <div class="btn-group" role="group">
             {% if current_user.is_authenticated %}
@@ -36,10 +35,11 @@
 {% macro show_verified_seism(verified_seism) %}
 <tr>
     <th scope="row">{{verified_seism.id}}</th>
-    <td>{{verified_seism.datetime}}</td>
     <td>{{verified_seism.depth}}</td>
-    <td>{{verified_seism.magnitude}}</td>
     <td>{{verified_seism.sensor.name}}</td>
+    <td>{{verified_seism.magnitude}}</td>
+    <td>{{verified_seism.datetime}}</td>
+
     <td>
       <div class="btn-group" role="group">
           <a type="button" class="btn btn-sm" data-toggle="tooltip" title="view" href="{{ url_for('verified_seism.view',id=verified_seism.id) }}"><i class="fas fa-eye"></i></a>

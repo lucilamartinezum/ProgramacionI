@@ -44,15 +44,86 @@
       <div class="row">
         <div class="col-md-2 d-none d-md-block"></div>
         <div class="col-md-auto">
+          Total: {{pagination.total}}
           <table class="table  table-striped table-hover table-bordered table-responsive ">
             <thead>
               <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Date Time</th>
-                <th scope="col">Depth</th>
-                <th scope="col">Magnitude</th>
-                <th scope="col">Latitude</th>
-                <th scope="col">Longitude</th>
+                <th scope="col">
+                  {% if request.args.sort_by == "sensor.name.desc" %}
+                  <a class="text-white" href="{{ url_for('unverified_seism.index',
+                  sort_by = 'sensor.name.asc',
+                  depth = request.args.depth,
+                  sensorId = request.args.sensorId,
+                  magnitude = request.args.magnitude,
+                  datetime = request.args.datetime,
+                  from_datetime = request.args.from_datetime,
+                  to_datetime = request.args.to_datetime,
+                  magnitude_min = request.args.magnitude_min,
+                  magnitude_max = request.args.magnitude_max,)}}">Sensor Name</a>
+                  {% else %}
+                  <a class="text-white" href="{{ url_for('unverified_seism.index',
+                  sort_by = 'sensor.name.desc',
+                  depth = request.args.depth,
+                  sensorId = request.args.sensorId,
+                  magnitude = request.args.magnitude,
+                  datetime = request.args.datetime,
+                  from_datetime = request.args.from_datetime,
+                  to_datetime = request.args.to_datetime,
+                  magnitude_min = request.args.magnitude_min,
+                  magnitude_max = request.args.magnitude_max,)}}">Sensor Name</a>
+                  {% endif %}
+                </th>
+                <th scope="col">
+                  {% if request.args.sort_by == "magnitude.desc" %}
+                  <a class="text-white" href="{{ url_for('unverified_seism.index',
+                  sort_by = 'magnitude.asc',
+                  depth = request.args.depth,
+                  sensorId = request.args.sensorId,
+                  magnitude = request.args.magnitude,
+                  datetime = request.args.datetime,
+                  from_datetime = request.args.from_datetime,
+                  to_datetime = request.args.to_datetime,
+                  magnitude_min = request.args.magnitude_min,
+                  magnitude_max = request.args.magnitude_max,)}}">Magnitude</a>
+                  {% else %}
+                  <a class="text-white" href="{{ url_for('unverified_seism.index',
+                  sort_by = 'magnitude.desc',
+                  depth = request.args.depth,
+                  sensorId = request.args.sensorId,
+                  magnitude = request.args.magnitude,
+                  datetime = request.args.datetime,
+                  from_datetime = request.args.from_datetime,
+                  to_datetime = request.args.to_datetime,
+                  magnitude_min = request.args.magnitude_min,
+                  magnitude_max = request.args.magnitude_max,)}}">Magnitude</a>
+                  {% endif %}
+              </th>
+                <th scope="col">
+                  {% if request.args.sort_by == "datetime.desc"  %}
+                  <a class="text-white" href="{{ url_for('verified_seism.index',
+                  sort_by = 'datetime.asc',
+                  depth = request.args.depth,
+                  sensorId = request.args.sensorId,
+                  magnitude = request.args.magnitude,
+                  datetime = request.args.datetime,
+                  from_datetime = request.args.from_datetime,
+                  to_datetime = request.args.to_datetime,
+                  magnitude_min = request.args.magnitude_min,
+                  magnitude_max = request.args.magnitude_max,)}}">Datetime</a>
+                  {% else %}
+                  <a class="text-white" href="{{ url_for('unverified_seism.index',
+                  sort_by = 'datetime.desc',
+                  depth = request.args.depth,
+                  sensorId = request.args.sensorId,
+                  magnitude = request.args.magnitude,
+                  datetime = request.args.datetime,
+                  from_datetime = request.args.from_datetime,
+                  to_datetime = request.args.to_datetime,
+                  magnitude_min = request.args.magnitude_min,
+                  magnitude_max = request.args.magnitude_max,)}}">Datetime</a>
+                  {% endif %}
+                </th>
                 <th scope="col">Actions</th>
               </tr>
             </thead>
@@ -68,20 +139,80 @@
         <div class="col-md-2 d-none d-md-block"></div>
       </div>
 
-      <!-- Paginacion -->
-      <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-          <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1">Previous</a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-          </li>
-        </ul>
-      </nav>
+      < <!-- Pagination -->
+  <nav aria-label="Pagination">
+    <ul class="pagination justify-content-center">
+      <!-- Boton de página anterior, desactivar si se está en la primera página -->
+      {% if pagination.current_page != 1 %}
+      <li class="page-item">
+        <a class="page-link" href="{{ url_for('unverified_seism.index',
+        page = (pagination.current_page-1),
+        sort_by = request.args.sort_by,
+        from_datetime = request.args.from_datetime,
+        to_datetime = request.args.to_datetime,
+        datetime = request.args.datetime,
+        magnitude = request.args.magnitude,
+        magnitude_min = request.args.magnitude_min,
+        magnitude_max = request.args.magnitude_max,
+        depth = request.args.depth,
+        sensorId = request.args.sensorId )}}" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a href="#" class="page-link" tabindex="-1" aria-disabled="true" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span></a>
+      </li>
+      {% endif %}
+      <!-- Recorrer cantidad de páginas para el filtrado actual -->
+      {% for n in range(1, pagination.pages+1) %}
+      <!-- Boton para cada página, desactivar para página actual -->
+      {% if n != pagination.current_page %}
+      <li class="page-item">
+        <a class="page-link" href="{{ url_for('unverified_seism.index',
+        page = n,
+        sort_by = request.args.sort_by,
+        datetime = request.args.datetime,
+        from_datetime = request.args.from_datetime,
+        to_datetime = request.args.to_datetime,
+        magnitude = request.args.magnitude,
+        depth = request.args.depth,
+        sensorId = request.args.sensorId,
+        magnitude_min = request.args.magnitude_min,
+        magnitude_max = request.args.magnitude_max,)}}">{{n}}</a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="+1" aria-disabled="true">{{n}}</a>
+      </li>
+      {% endif %}
+      {% endfor %}
+      <!-- Boton de página siguiente, desactivar si se está en la última página -->
+      {% if pagination.current_page != pagination.pages %}
+      <li class="page-item">
+        <a class="page-link" href="{{ url_for('unverified_seism.index',
+        page = (pagination.current_page+1),
+        sort_by = request.args.sort_by,
+        datetime = request.args.datetime,
+        from_datetime = request.args.from_datetime,
+        to_datetime = request.args.to_datetime,
+        magnitude = request.args.magnitude,
+        depth = request.args.depth,
+        magnitude_min = request.args.magnitude_min,
+        magnitude_max = request.args.magnitude_max,
+        sensorId = request.args.sensorId )}}" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a href="#" class="page-link" tabindex="-1" aria-disabled="true" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span></a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
     </div>
   </main>
 

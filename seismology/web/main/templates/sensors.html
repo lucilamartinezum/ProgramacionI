@@ -92,7 +92,7 @@
                 {% endif %}
               </th>
               <th scope="col">
-                {% if request.args.sort_by == "status.desc" %}
+                {% if request.args.sort_by == "active.desc" %}
                 <a class="text-white" href="{{ url_for('sensor.index',
                 sort_by = 'active.asc',
                 name = request.args.name,
@@ -108,7 +108,23 @@
                 userId = request.args.userId )}}">Active</a>
                 {% endif %}
               </th>
-              <th scope="col">User Associated</th>
+              <th scope="col">
+                {% if request.args.sort_by == "user.email.desc" %}
+                <a class="text-white" href="{{ url_for('sensor.index',
+                sort_by = 'user.email.asc',
+                name = request.args.name,
+                status = request.args.status,
+                active = request.args.active,
+                userId = request.args.userId )}}">User Associated</a>
+                {% else %}
+                <a class="text-white" href="{{ url_for('sensor.index',
+                sort_by = 'user.email.desc',
+                name = request.args.name,
+                status = request.args.status,
+                active = request.args.active,
+                userId = request.args.userId )}}">User Associated</a>
+                {% endif %}
+              </th>
               <th scope="col">Actions</th>
           </tr>
 
@@ -136,6 +152,7 @@
       <li class="page-item">
         <a class="page-link" href="{{ url_for('sensor.index',
         page = (pagination.current_page-1),
+        sort_by = request.args.sort_by,
         name = request.args.name,
         status = request.args.status,
         active = request.args.active,
@@ -156,6 +173,7 @@
       <li class="page-item">
         <a class="page-link" href="{{ url_for('sensor.index',
         page = n,
+        sort_by = request.args.sort_by,
         name = request.args.name,
         status = request.args.status,
         active = request.args.active,
@@ -172,6 +190,7 @@
       <li class="page-item">
         <a class="page-link" href="{{ url_for('sensor.index',
         page = (pagination.current_page+1),
+        sort_by = request.args.sort_by,
         name = request.args.name,
         status = request.args.status,
         active = request.args.active,
