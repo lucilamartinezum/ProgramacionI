@@ -93,10 +93,7 @@ input { margin-right: 6px; }
     background-color: rgb(54, 8, 54);
     border: 2px solid black;
     color: white;
-    padding: 20px;
-    margin:10px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    
 
 }
 .btn:hover{
@@ -111,5 +108,8 @@ body {
 
 .card{
     background-color: rgb(36, 34, 34);
+}
+.p-2{
+    background-color:#15171a ;
 }
 

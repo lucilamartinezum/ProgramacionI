@@ -63,6 +63,7 @@
       <change beforePath="$PROJECT_DIR$/seismology/web/main/templates/sensors.html" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/main/templates/sensors.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/web/main/templates/unverified-seisms.html" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/main/templates/unverified-seisms.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/web/main/templates/unverified_seism.html" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/main/templates/unverified_seism.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seismology/web/main/templates/verified-seism.html" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/main/templates/verified-seism.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/web/main/templates/verified-seisms.html" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/main/templates/verified-seisms.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/web/web/.browserslistrc" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/web/web/.editorconfig" beforeDir="false" />
