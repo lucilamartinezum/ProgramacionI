@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="918a2be8-cca0-47d6-ae23-e53fd2402fe9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/api/main/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/main/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/api/main/models/Sensor.py" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/main/models/Sensor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/api/main/resources/Seism.py" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/main/resources/Seism.py" afterDir="false" />

@@ -9,11 +9,17 @@
     z-index:2000;
 
 }
+
 .navbar{
     background-color: rgb(54, 8, 54);
+    width: 100%;
+    
+    
 }
 .breadcrumb{
     background-color: rgb(163, 134, 163);
+    width: 100%;
+  
 }
 input { margin-right: 6px; }
 .form{
@@ -30,11 +36,11 @@ input { margin-right: 6px; }
 }
 .navbar-brand:hover{
     background-color: black;
-    color: rgb(238, 177, 238);
+    color: rgb(163, 134, 163);
 }
 .nav:hover{
     background-color: black;
-    color:rgb(238, 177, 238);
+    color:rgb(163, 134, 163);
 }
 #dropdownMenuBoton{
     background-color: rgb(54, 8, 54);
@@ -46,7 +52,7 @@ input { margin-right: 6px; }
 }
 #dropdownMenuBoton:hover{
     background-color: black;
-    color:rgb(238, 177, 238);
+    color:rgb(163, 134, 163);
 }
 .nav a{
     color: white;
@@ -56,16 +62,19 @@ input { margin-right: 6px; }
     background-color: rgb(54, 8, 54);
     min-width: 80px;
 }
+
 .table th{
     background-color:rgb(54, 8, 54);
     color: white;
+    text-align: center;
 }
 .table td{
-    background-color: white;
+    background-color: rgb(163, 134, 163);
+    text-align: center;
 }
 .table tr:hover td{
     color:white;
-    background-color: rgb(153, 153, 153);
+    background-color: rgb(82, 18, 82);
 }
 .pagination>li>a {
     background-color: rgb(54, 8, 54);
@@ -88,28 +97,19 @@ input { margin-right: 6px; }
     margin:10px;
     margin-top: 30px;
     margin-bottom: 30px;
+
 }
 .btn:hover{
     background-color: black;
-    color:rgb(238, 177, 238);
+    color:rgb(163, 134, 163);
 }
-#dropdownMenuBoton{
-    background-color: rgb(54, 8, 54);
-    border: none;
-    color: white;
-    padding: 10px;
-    position: relative;
 
-}
-#dropdownMenuBoton:hover{
-    background-color: black;
-    color:rgb(238, 177, 238);
-}
-.nav a{
+body {
+    background-color: #15171a;
     color: white;
-    padding: 15px;
 }
-.nav .dropdown-menu{
-    background-color: rgb(54, 8, 54);
-    min-width: 80px;
+
+.card{
+    background-color: rgb(36, 34, 34);
 }
+
