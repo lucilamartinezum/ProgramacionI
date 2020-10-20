@@ -5,6 +5,7 @@ from main.models import SensorModel
 from main.models import UserModel
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from main.auth.decorators import admin_required
+from main.utilities.sensor_sockets import check_sensor
 
 class Sensor(Resource):
     @admin_required#@jwt_required
@@ -21,7 +22,7 @@ class Sensor(Resource):
             db.session.commit()
         except Exception as error:
             db.session.rollback()
-            return '', 409
+            return 'This sensor can not be deleted', 409
         return "Sensor was deleted succesfully", 204
     @admin_required
     #modificar recurso
@@ -37,6 +38,7 @@ class Sensor(Resource):
             return str(error), 400
 
 
+
 class Sensors(Resource):
     @admin_required
     #obtener lista de recursos
@@ -46,9 +48,7 @@ class Sensors(Resource):
         max_per_page = 50
         #filtrar sensores
         filters = request.get_json().items()
-        print("----------------------", filters)
         sensors = db.session.query(SensorModel)
-        print("-------------------------------------->", sensors)
         for key, value in filters:
             # FILTROS
             if key == "name":
@@ -90,7 +90,6 @@ class Sensors(Resource):
                 per_page = int(value)
 
         sensors = sensors.paginate(page, per_page, True, max_per_page)
-        print("----------------------------------->", sensors)
         return jsonify({'Sensors': [sensor.to_json() for sensor in sensors.items],
                         'total': sensors.total,
                         'pages': sensors.pages,
@@ -118,3 +117,11 @@ class SensorsInfo(Resource):
         return jsonify({'Sensors': [sensor.to_json_public() for sensor in sensors],
 
                         })
+
+class SensorStatus(Resource):
+    def get(self, id):
+        print("++++++++++++")
+        check_sensor(id)
+        return "", 200
+
+

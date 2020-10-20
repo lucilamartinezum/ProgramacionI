@@ -63,14 +63,17 @@
   <td>
     <div class="btn-group" role="group">
 
-      <a class="btn btn-sm btn-dark" type="button" href="{{ url_for('sensor.view',id=sensor.id) }}">
+      <a class="btn btn-sm btn-dark" type="button" title="view" href="{{ url_for('sensor.view',id=sensor.id) }}">
         <i class="fas fa-eye"></i></a>
 
-      <a class="btn btn-sm btn-dark" type="button" href="{{ url_for('sensor.delete',id=sensor.id) }}">
+      <a class="btn btn-sm btn-dark" type="button" title="delete" href="{{ url_for('sensor.delete',id=sensor.id) }}">
         <i class="fas fa-trash"></i></a>
 
-      <a class="btn btn-sm btn-dark" type="button" href="{{ url_for('sensor.edit',id=sensor.id) }}">
+      <a class="btn btn-sm btn-dark" type="button" title="edit" href="{{ url_for('sensor.edit',id=sensor.id) }}">
         <i class="fas fa-edit"></i></a>
+      <a class="btn btn-sm btn-dark" type="button" title="check status" href="{{ url_for('sensor.check',id=sensor.id) }}">
+        <i class="fas fa-check"></i></a>  
+
 
     </div>
   </td>

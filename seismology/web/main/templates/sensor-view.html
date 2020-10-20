@@ -8,21 +8,21 @@
                 <h2>Detailed Sensor Information {{sensor.id}}</h2>
                 <table>
                     <tr>
-                        <th scope="col " class = "p-2">NAME:</th> <th scope="col"> <span class="border border-dark shadow p-1 mb-5 bg-white ">{{sensor.name}} </span></th>
+                        <th scope="col " class = "p-2">NAME:</th> <th scope="col"> <span class="border border-dark shadow p-1 mb-5 bg-dark ">{{sensor.name}} </span></th>
                     <tr>
-                        <th scope="col" class = "p-2">STATUS:</th> <th scope="col"> <span class="border border-dark shadow p-1 mb-5 bg-white">{{sensor.status}}</span></th>
+                        <th scope="col" class = "p-2">STATUS:</th> <th scope="col"> <span class="border border-dark shadow p-1 mb-5 bg-dark">{{sensor.status}}</span></th>
                     </tr>
                     <tr>
-                        <th scope="col" class = "p-2">IP:</th> <th scope="col"> <span class="border border-dark shadow p-1 mb-5 bg-white">{{sensor.ip}}</span></th>
+                        <th scope="col" class = "p-2">IP:</th> <th scope="col"> <span class="border border-dark shadow p-1 mb-5 bg-dark">{{sensor.ip}}</span></th>
                     </tr>
                     <tr>
-                        <th scope="col" class = "p-2">PORT:</th> <th scope="col"> <span class="border border-dark shadow p-1 mb-5 bg-white">{{sensor.port}}</span></th>
+                        <th scope="col" class = "p-2">PORT:</th> <th scope="col"> <span class="border border-dark shadow p-1 mb-5 bg-dark">{{sensor.port}}</span></th>
                     </tr>
                     <tr>
-                        <th scope="col" class = "p-2">ACTIVE:</th> <th scope="col"> <span class="border border-dark shadow p-1 mb-5 bg-white">{{sensor.active}}</span></th>
+                        <th scope="col" class = "p-2">ACTIVE:</th> <th scope="col"> <span class="border border-dark shadow p-1 mb-5 bg-dark">{{sensor.active}}</span></th>
                     </tr>
                     <tr>
-                        <th scope="col" class = "p-2">USER ASSOCIATED:</th> <th scope="col"> <span class="border border-dark shadow p-1 mb-5 bg-white">{{sensor.user.email}}</span></th>
+                        <th scope="col" class = "p-2">USER ASSOCIATED:</th> <th scope="col"> <span class="border border-dark shadow p-1 mb-5 bg-dark">{{sensor.user.email}}</span></th>
                     </tr>
                 </table>
             </div>
@@ -36,7 +36,7 @@
     <div class="row">
         <div class="col-md-12 pagination justify-content-center">
             <a type="button" class="btn btn-sm" data-toggle="tooltip" href="{{ url_for('sensor.delete',id=sensor.id) }}"><i class="fas fa-trash"></i>DELETE</a>
-            <a type="button" class="btn btn-sm" data-toggle="tooltip" href="{{ url_for('sensor.edit',id=sensor.id) }}"><i class="fas fa-edit"></i>SENSOR</a>
+            <a type="button" class="btn btn-sm" data-toggle="tooltip" href="{{ url_for('sensor.edit',id=sensor.id) }}"><i class="fas fa-edit"></i>EDIT</a>
         </div>
     </div>
 </main>

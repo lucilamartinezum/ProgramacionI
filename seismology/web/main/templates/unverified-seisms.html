@@ -146,7 +146,7 @@
       {% if pagination.current_page != 1 %}
       <li class="page-item">
         <a class="page-link" href="{{ url_for('unverified_seism.index',
-        page = (pagination.current_page-1),
+        page = 1,
         sort_by = request.args.sort_by,
         from_datetime = request.args.from_datetime,
         to_datetime = request.args.to_datetime,
@@ -165,8 +165,32 @@
           <span aria-hidden="true">&laquo;</span></a>
       </li>
       {% endif %}
+      <!-- Boton de página anterior, desactivar si se está en la primera página -->
+      {% if pagination.current_page != 1 %}
+      <li class="page-item">
+        <a class="page-link" href="{{ url_for('unverified_seism.index',
+        page = (pagination.current_page-1),
+        sort_by = request.args.sort_by,
+        from_datetime = request.args.from_datetime,
+        to_datetime = request.args.to_datetime,
+        datetime = request.args.datetime,
+        magnitude = request.args.magnitude,
+        magnitude_min = request.args.magnitude_min,
+        magnitude_max = request.args.magnitude_max,
+        depth = request.args.depth,
+        sensorId = request.args.sensorId )}}" aria-label="Previous">
+          <span aria-hidden="true">&lsaquo;</span>
+        </a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a href="#" class="page-link" tabindex="-1" aria-disabled="true" aria-label="Previous">
+          <span aria-hidden="true">&lsaquo;</span></a>
+      </li>
+      {% endif %}
       <!-- Recorrer cantidad de páginas para el filtrado actual -->
-      {% for n in range(1, pagination.pages+1) %}
+      {% for n in range(pagination.current_page-5, pagination.current_page+5) %}
+      {%if n>=1 and n<=pagination.pages %}
       <!-- Boton para cada página, desactivar para página actual -->
       {% if n != pagination.current_page %}
       <li class="page-item">
@@ -187,12 +211,36 @@
         <a class="page-link" href="#" tabindex="+1" aria-disabled="true">{{n}}</a>
       </li>
       {% endif %}
+      {% endif %}
       {% endfor %}
       <!-- Boton de página siguiente, desactivar si se está en la última página -->
       {% if pagination.current_page != pagination.pages %}
       <li class="page-item">
         <a class="page-link" href="{{ url_for('unverified_seism.index',
         page = (pagination.current_page+1),
+        sort_by = request.args.sort_by,
+        datetime = request.args.datetime,
+        from_datetime = request.args.from_datetime,
+        to_datetime = request.args.to_datetime,
+        magnitude = request.args.magnitude,
+        depth = request.args.depth,
+        magnitude_min = request.args.magnitude_min,
+        magnitude_max = request.args.magnitude_max,
+        sensorId = request.args.sensorId )}}" aria-label="Next">
+          <span aria-hidden="true">&rsaquo;</span>
+        </a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a href="#" class="page-link" tabindex="-1" aria-disabled="true" aria-label="Next">
+          <span aria-hidden="true">&rsaquo;</span></a>
+      </li>
+      {% endif %}
+      <!-- Boton de página siguiente, desactivar si se está en la última página -->
+      {% if pagination.current_page != pagination.pages %}
+      <li class="page-item">
+        <a class="page-link" href="{{ url_for('unverified_seism.index',
+        page = (pagination.pages),
         sort_by = request.args.sort_by,
         datetime = request.args.datetime,
         from_datetime = request.args.from_datetime,

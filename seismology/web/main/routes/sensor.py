@@ -22,6 +22,7 @@ def index():
         (int(user["id"]), user["email"]) for user in json.loads(req.text)["Users"]
     ]
     filter.userId.choices.insert(0, [0, "All"])
+
     data = {}
     # Aplicado de filtros
     # Validar formulario de filtro
@@ -111,11 +112,7 @@ def edit(id):
             return redirect(url_for("sensor.index"))
         sensor = json.loads(req.text)
         # cargar datos
-        form.name.data = sensor["name"]
-        form.ip.data = sensor["ip"]
-        form.port.data = sensor["port"]
-        form.status.data = sensor["status"]
-        form.active.data = sensor["active"]
+
 
     if form.validate_on_submit():
         sensor = {
@@ -127,9 +124,21 @@ def edit(id):
             "userId": form.userId.data
         }
         data = json.dumps(sensor)
+        print(data)
         req = sendRequest(method="put", url="/sensor/" + str(id), data=data, auth=True)
         flash("Sensor has been edited","success")
         return redirect(url_for("sensor.index"))
+    else:
+        form.name.data = sensor["name"]
+        form.ip.data = sensor["ip"]
+        form.port.data = sensor["port"]
+        form.status.data = sensor["status"]
+        form.active.data = sensor["active"]
+        print(sensor)
+        form.userId.data = sensor["user"]["id"]
+
+       
+        
     return render_template("edit-sensor.html", form=form, id=id)
 
 
@@ -138,5 +147,15 @@ def edit(id):
 @admin_required
 def delete(id):
     req = sendRequest(method="delete", url="/sensor/" + str(id), auth=True)
-    flash("Sensor has been deleted", "danger")
+    if req.status_code == 409:
+        flash(req.text, "danger")
+    else:
+        flash("Sensor has been deleted", "danger")
+    return redirect(url_for('sensor.index'))
+
+@sensor.route('check/<int:id>')
+@login_required
+@admin_required
+def check(id):
+    req = sendRequest(method="get", url="/sensor/check/" + str(id), auth=True)
     return redirect(url_for('sensor.index'))

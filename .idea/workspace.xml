@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="918a2be8-cca0-47d6-ae23-e53fd2402fe9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/seismology/api/main/utilities/sensor_sockets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seismology/api/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/api/main/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/main/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/api/main/models/Sensor.py" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/main/models/Sensor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/api/main/resources/Seism.py" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/main/resources/Seism.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/api/main/resources/Sensor.py" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/main/resources/Sensor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/api/main/resources/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/main/resources/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seismology/api/pyvenv.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/pyvenv.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seismology/api/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/api/seismology.db" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/seismology.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/web/frontend/.browserslistrc" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/web/frontend/.editorconfig" beforeDir="false" />
@@ -60,6 +65,7 @@
       <change beforePath="$PROJECT_DIR$/seismology/web/main/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/main/templates/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/web/main/templates/macros.html" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/main/templates/macros.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/web/main/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/main/templates/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seismology/web/main/templates/sensor-view.html" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/main/templates/sensor-view.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/web/main/templates/sensors.html" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/main/templates/sensors.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/web/main/templates/unverified-seisms.html" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/main/templates/unverified-seisms.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/web/main/templates/unverified_seism.html" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/main/templates/unverified_seism.html" afterDir="false" />
@@ -144,5 +150,9 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="205" y="31" key="SettingsEditor/67.27.1299.741@67.27.1299.741" timestamp="1600715839986" />
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1603226537698">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1603226537698" />
   </component>
 </project>
