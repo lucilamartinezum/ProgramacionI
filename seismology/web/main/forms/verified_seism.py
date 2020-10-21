@@ -43,10 +43,11 @@ class VerifiedSeismsFilter(FlaskForm):
         coerce= int,
         validators=[validators.optional()])
 
-    #sort_by = HiddenField()
 
     per_page = IntegerField(
         validators=[validators.optional()]
         )
 
     submit = SubmitField(label="Filter",)
+
+    download = SubmitField("Download")

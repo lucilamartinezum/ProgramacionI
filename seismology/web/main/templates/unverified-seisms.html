@@ -101,7 +101,7 @@
               </th>
                 <th scope="col">
                   {% if request.args.sort_by == "datetime.desc"  %}
-                  <a class="text-white" href="{{ url_for('verified_seism.index',
+                  <a class="text-white" href="{{ url_for('unverified_seism.index',
                   sort_by = 'datetime.asc',
                   depth = request.args.depth,
                   sensorId = request.args.sensorId,

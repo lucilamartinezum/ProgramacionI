@@ -6,6 +6,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/api/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/api/main/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/main/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seismology/api/main/models/Seism.py" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/main/models/Seism.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/api/main/models/Sensor.py" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/main/models/Sensor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/api/main/resources/Seism.py" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/main/resources/Seism.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/api/main/resources/Sensor.py" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/api/main/resources/Sensor.py" afterDir="false" />
@@ -69,6 +70,7 @@
       <change beforePath="$PROJECT_DIR$/seismology/web/main/templates/sensors.html" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/main/templates/sensors.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/web/main/templates/unverified-seisms.html" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/main/templates/unverified-seisms.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/web/main/templates/unverified_seism.html" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/main/templates/unverified_seism.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seismology/web/main/templates/users.html" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/main/templates/users.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/web/main/templates/verified-seism.html" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/main/templates/verified-seism.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/web/main/templates/verified-seisms.html" beforeDir="false" afterPath="$PROJECT_DIR$/seismology/web/main/templates/verified-seisms.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seismology/web/web/.browserslistrc" beforeDir="false" />

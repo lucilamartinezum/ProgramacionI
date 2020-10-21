@@ -3,6 +3,8 @@ import requests, json
 from flask_breadcrumbs import register_breadcrumb
 from ..utilities.functions import sendRequest
 from ..forms.verified_seism import VerifiedSeismsFilter
+import io, csv
+from flask import make_response
 
 verified_seism = Blueprint("verified_seism", __name__, url_prefix="/verified-seism")
 
@@ -53,6 +55,57 @@ def index():
     # Ordenamiento
     if "sort_by" in request.args:
         data["sort_by"] = request.args.get("sort_by", "")
+
+    # Si se quiere descargar el archivo
+    if "download" in request.args:
+        if request.args.get("download", "") == "Download":
+            code = 200
+            # Comenzar por la primera pagina
+            page = 1
+            list_seisms = []
+            # Recorrer hasta que no haya mas paginas
+            while code == 200:
+                data["page"] = page
+                # Llamada a la api
+                req = sendRequest(method="get", url="/verified-seisms", data=json.dumps(data),)
+                code = req.status_code
+                if code == 200:
+                    # Recorrer los sismos de la pagina y colocar los campos que se quieren agregar
+                    for seism in json.loads(req.text)["Verified-Seisms"]:
+                        element = {
+                            "id": seism["id"],
+                            "datetime": seism["datetime"],
+                            "depth": seism["depth"],
+                            "magnitude": seism["magnitude"],
+                            "latitude": seism["latitude"],
+                            "longitude": seism["longitude"],
+                            "sensor.name": seism["sensor"]["name"],
+                        }
+                        # Agregar cada elemento a la lista
+                        list_seisms.append(element)
+                # Aumentar en uno el numero de pagina
+                page += 1
+
+            # Inicializar para poder escribir en el buffer de memoria
+            si = io.StringIO()
+            # Inicializar el objeto que va a escribir el csv a partir de un diccionario
+            # Pasar las claves del diccionario como cabecera
+            fc = csv.DictWriter(si, fieldnames=list_seisms[0].keys())
+            # Escribir la cabecera
+            fc.writeheader()
+            # Escribir las filas
+            fc.writerows(list_seisms)
+
+            # Crear una respuesta que tiene como contenido el valor dedl buffer
+            output = make_response(si.getvalue())
+            # Colocar cabeceras para que se descargue como un archivo
+            output.headers["Content-Disposition"] = "attachment; filename=seisms.csv"
+            output.headers["Content-type"] = "text/csv"
+
+            # Devolver la salida
+            return output
+
+
 
     # Numero de pagina
     if "page" in request.args:
