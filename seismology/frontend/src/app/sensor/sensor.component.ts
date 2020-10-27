@@ -39,6 +39,12 @@ export class SensorComponent implements OnInit {
       status: true,
       id_num : 4,
     },
+    {
+      name: 'Juampi',
+      active: false,
+      status: false,
+      id_num : 6,
+    },
    
   ];
   constructor() { }
