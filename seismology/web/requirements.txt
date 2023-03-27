@@ -4,7 +4,7 @@ python-dotenv==0.14.0
 requests==2.24.0
 flask_wtf==0.14.3
 email_validator==1.1.1
-PyJWT==1.7.1
+PyJWT==2.4.0
 flask-restful==0.3.8
 flask-login==0.5.0
 
