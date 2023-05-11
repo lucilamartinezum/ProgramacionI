@@ -12,7 +12,8 @@ verified_seism = Blueprint("verified_seism", __name__, url_prefix="/verified-sei
 @register_breadcrumb(verified_seism, '.', 'Verified Seisms')
 def index():
     filter = VerifiedSeismsFilter(request.args, meta={"csrf": False})
-    req = sendRequest(method="get", url="/sensors-info", auth=True)
+    # req = requests.get(current_app.config["API_URL"] + '/verified-seisms')
+    req = sendRequest(method="get", url="/sensors-info")
     filter.sensorId.choices = [(int(sensor["id"]), sensor["name"]) for sensor in json.loads(req.text)["Sensors"]]
     filter.sensorId.choices.insert(0, [0, "All"])
     data = {}

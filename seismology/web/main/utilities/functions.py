@@ -6,7 +6,7 @@ import requests
 from werkzeug.routing import RequestRedirect
 
 
-def sendRequest(method, url, auth=False, data=None):
+def sendRequest(method, url, auth=False, data="{}"):
     # Headers por defecto
     headers = {"content-type": "application/json"}
 
